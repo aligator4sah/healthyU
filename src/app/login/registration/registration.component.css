@@ -1,0 +1,23 @@
+
+.register-form {
+  left: 30%;
+  top: 10%;
+  bottom: 20%;
+  padding-left: 30%;
+  margin-top: 10px;
+}
+
+.card {
+  width: 500px;
+}
+
+.card-title {
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+
+.card-text {
+  margin-top: 5px;
+  margin-left: 15px;
+}
