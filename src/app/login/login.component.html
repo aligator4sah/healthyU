@@ -2,7 +2,7 @@
   <form class="login">
     <label class="title">
       <h3 class="welcome">Welcome to</h3>
-      healthy U System
+      <strong>healthy <span class="special-letter"> U </span> System</strong>
       <h5 class="hint">Use your User ID to sign in or create one now</h5>
     </label>
     <div class="login-group">
@@ -22,10 +22,140 @@
         </label>
       </div>
       <button type="submit" class="btn btn-primary" (click)="submit()">Log In</button>
-      <a routerLind="" class="signup">Sign up for a User ID</a>
+      <a routerLink="" class="signup" (click)="signUp()">Sign up for a User ID</a>
+      <a routerLink="" class="signup">Forget Password</a>
       <div *ngIf="isValid">
         Invalid user name or password
       </div>
     </div>
   </form>
 </div>
+
+<!-- Register Page-->
+<clr-wizard #wizardlg [(clrWizardOpen)]="lgOpen" clrWizardSize="lg">
+  <clr-wizard-title>User Registration</clr-wizard-title>
+
+  <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
+  <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
+  <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
+  <clr-wizard-button [type]="'finish'">Finish</clr-wizard-button>
+
+  <!--<clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid">-->
+  <clr-wizard-page>
+    <ng-template clrPageTitle>Required Information</ng-template>
+    <form [formGroup]="form1">
+    <section class="form-block">
+      <div class="form-group">
+        <label for="empUserName">User name</label>
+        <label for="empUserName"
+               aria-haspopup="true"
+               role="tooltip"
+               class="tooltip tooltip-validation tooltip-md">
+          <input type="text" id="empUserName" placeholder="Enter User name"
+                 name="userName"
+                 [(ngModel)]="user.username" formControlName="username">
+          <span class="tooltip-content"> User Name is Required. </span>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="empFirstName">First name</label>
+        <label for="empFirstName"
+               aria-haspopup="true"
+               role="tooltip"
+               class="tooltip tooltip-validation tooltip-md">
+          <input type="text" id="empFirstName" placeholder="Enter first name"
+                 name="firstName"
+                 [(ngModel)]="user.firstName" formControlName="firstname">
+          <span class="tooltip-content"> First Name is Required. </span>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="empLastName">Last name</label>
+        <label for="empLastName"
+               aria-haspopup="true"
+               role="tooltip"
+               class="tooltip tooltip-validation tooltip-md">
+          <input type="text" id="empLastName" placeholder="Enter last name"
+                 name="lastName"
+                 [(ngModel)]="user.lastName"
+                 formControlName="lastname">
+          <span class="tooltip-content">
+                    Last Name is Required.
+                </span>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="dateControl">Date</label>
+        <input id="dateControl" type="date" clrDate formControlName="dob" required>
+      </div>
+      <div class="form-group">
+        <label for="empType">User type</label>
+        <div class="select">
+          <select id="empType"
+                  name="employeeType"
+                  [(ngModel)]="user.type" formControlName="role" required>
+            <option value="Default">Select User Type...</option>
+            <option *ngFor="let type of userType" [value]="type">{{type.value}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="empGender">Gender</label>
+        <div class="select">
+          <select id="empGender"
+                  name="employeeGender"
+                  [(ngModel)]="user.gender" formControlName="gender" required>
+            <option value="Default">Select User Gender...</option>
+            <option *ngFor="let ge of gender" [value]="ge">{{ge.value}}</option>
+          </select>
+        </div>
+      </div>
+      <br>
+    </section>
+    </form>
+  </clr-wizard-page>
+
+  <clr-wizard-page [clrWizardPageNextDisabled]="!form2.valid">
+    <form [formGroup]="form2">
+    <section class="form-block">
+    <ng-template clrPageTitle>Optional Information</ng-template>
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input id="phone" type="text" [(ngModel)]="user.phone" formControlName="phone" placeholder="Enter Phone Number">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="text" [(ngModel)]="user.email" formControlName="email" placeholder="Enter Email">
+    </div>
+    </section>
+    </form>
+  </clr-wizard-page>
+
+  <!-- Security Questions-->
+  <clr-wizard-page>
+    <ng-template clrPageTitle>Security Information</ng-template>
+    <form [formGroup]="form3">
+      <section class="form-block">
+        <div *ngFor="let t of time">
+        <div class="form-group">
+          <label>{{t}} .Security Question</label>
+          <div class="select">
+            <select name="secq1"
+                    [(ngModel)]="user.q1" formControlName="q1" required>
+              <option *ngFor="let ques of secureQue" [value]="ques">{{ques.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{t}} .Security Answer</label>
+          <input type="text" [(ngModel)]="user.q2" formControlName="q2" placeholder="Enter Answer">
+        </div>
+        </div>
+      </section>
+    </form>
+  </clr-wizard-page>
+  <clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid || !form2.valid">
+    <ng-template clrPageTitle>Confirmation</ng-template>
+    ...
+  </clr-wizard-page>
+</clr-wizard>
