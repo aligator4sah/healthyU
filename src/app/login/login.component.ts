@@ -13,10 +13,13 @@ export class LoginComponent implements OnInit {
 
   isValid: boolean = false;
   lgOpen: boolean = false;
+  role: string;
 
   form1: FormGroup;
   form2: FormGroup;
   form3: FormGroup;
+  loginForm: FormGroup;
+
   user = new UserModel();
   registered: boolean = false;
   userType = UserType;
@@ -33,8 +36,11 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.loginForm = this.fb.group({
+      loginRole: ['', [Validators.required]]
+    });
     this.form1 = this.fb.group({
-      username: ['', Validators.required, Validators.minLength(4)],
+      username: ['', [Validators.required, Validators.minLength(4)]],
       firstname: ['', []],
       lastname: ['', []],
       role: ['', [Validators.required]],
@@ -53,6 +59,9 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
+    if (this.role !== "undefined") {
+      localStorage.setItem("curRole", this.role);
+    }
     this.router.navigateByUrl("/dashboard");
   }
 

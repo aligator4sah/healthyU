@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClarityIcons } from '@clr/icons';
 
 @Component({
   selector: 'app-header',

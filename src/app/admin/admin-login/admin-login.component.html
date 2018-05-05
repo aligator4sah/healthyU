@@ -1,0 +1,20 @@
+<div class="login-wrapper">
+  <form class="login">
+    <label class="title">
+      <h3 class="welcome">Welcome to</h3>
+      <strong>Healthy <span class="special-letter">U</span> System</strong>
+      <h5 class="hint">Use your Administrator ID to sign in</h5>
+    </label>
+    <div class="login-group">
+      <input class="username" type="text" id="login_username" placeholder="Username">
+      <input class="password" type="password" id="login_password" placeholder="Password">
+      <div class="checkbox">
+        <input type="checkbox" id="rememberme">
+        <label for="rememberme">
+          Remember me
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="login()">Log In</button>
+    </div>
+  </form>
+</div>

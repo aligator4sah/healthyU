@@ -10,7 +10,8 @@ import {ClarityModule} from '@clr/angular';
   ],
   declarations: [HeaderComponent],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    ClarityModule
   ]
 })
 export class HeaderModule { }

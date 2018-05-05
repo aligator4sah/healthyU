@@ -7,7 +7,7 @@ export const routes = [
     component: SubnavComponent,
     children: [
       {path: '', redirectTo: 'question', pathMatch: 'full'},
-      {path: 'question', loadchildren: '../workspace/questionnaire/questionnaire.module#QuestionnaireModule'},
+      {path: 'question', loadChildren: '../workspace/questionnaire/questionnaire.module#QuestionnaireModule'},
     ]
   }
 ];

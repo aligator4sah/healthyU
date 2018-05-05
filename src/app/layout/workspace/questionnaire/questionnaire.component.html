@@ -1,3 +1,42 @@
-<p>
-  questionnaire works!
-</p>
+<div class="main-container">
+  <div class="card">
+    <div class="card-title">
+      <clr-icon shape="pencil"></clr-icon>
+      <span>Demographic Question</span>
+    </div>
+    <div class="card-divider"></div>
+    <div class="card-block">
+      <div class="card-text">
+
+        <ul id="demoTabs" class="nav" role="tablist">
+          <li role="presentation" class="nav-item">
+            <button id="tab1" class="btn btn-link nav-link" aria-controls="panel1"
+                    aria-selected="true" type="button">Health Related</button>
+          </li>
+          <li role="presentation" class="nav-item">
+            <button id="tab2" class="btn btn-link nav-link" aria-controls="panel2"
+                    aria-selected="false" type="button">Mobility and Exercise</button>
+          </li>
+          <li role="presentation" class="nav-item">
+            <button id="tab3" class="btn btn-link nav-link" aria-controls="panel3"
+                    aria-selected="false" type="button">Drug and Alcohol</button>
+          </li>
+        </ul>
+        <!-- health related questions-->
+        <section id="panel1" role="tabpanel" aria-labelledby="tab1">
+          <form [formGroup]="form1">
+
+          </form>
+        </section>
+        <section id="panel2" role="tabpanel" aria-labelledby="tab2" aria-hidden="true">
+          ...
+        </section>
+        <section id="panel3" role="tabpanel" aria-labelledby="tab3" aria-hidden="true">
+          ...
+        </section>
+
+
+      </div>
+    </div>
+  </div>
+</div>

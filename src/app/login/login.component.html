@@ -1,12 +1,12 @@
 <div class="login-wrapper">
-  <form class="login">
+  <form class="login" [formGroup]="loginForm">
     <label class="title">
       <h3 class="welcome">Welcome to</h3>
       <strong>healthy <span class="special-letter"> U </span> System</strong>
       <h5 class="hint">Use your User ID to sign in or create one now</h5>
     </label>
     <div class="login-group">
-      <div class="auth-source select">
+      <div class="auth-source select" [(ngModel)]="role" formControlName="loginRole">
         <select id="login-auth-source-1">
           <option>Student</option>
           <option>Staff</option>

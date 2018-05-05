@@ -1,19 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {SubnavModule} from './layout/subnav/subnav.module';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', loadChildren: './login/login.module#LoginModule'},
-  { path: 'dashboard', loadChildren: './layout/subnav/subnav.module#SubnavModule'}
+  { path: 'dashboard', loadChildren: './layout/subnav/subnav.module#SubnavModule'},
+  { path: 'admin', loadChildren: './admin/admin-login/admin-login.module#AdminLoginModule'}
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+    RouterModule.forRoot(appRoutes)
   ],
   exports: [
     RouterModule

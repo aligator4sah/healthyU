@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {ClarityModule} from '@clr/angular';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ClarityIconsApi} from '@clr/icons/clr-icons-api';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     BrowserModule,
     ClarityModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
