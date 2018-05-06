@@ -4,14 +4,17 @@ import { AdminLoginComponent } from './admin-login.component';
 import {ClarityModule} from '@clr/angular';
 import {RouterModule} from '@angular/router';
 
+export const routes = [
+  {path: '', component: AdminLoginComponent},
+  {path:'adminDashboard', loadChildren: '../admin-dashboard/admin-dashboard.module#AdminDashboardModule'}
+];
+
+
 @NgModule({
   imports: [
     CommonModule,
     ClarityModule,
-    RouterModule.forChild([
-      {path: '', component: AdminLoginComponent}
-      ]
-    ),
+    RouterModule.forChild(routes),
   ],
   declarations: [AdminLoginComponent],
   exports: [
