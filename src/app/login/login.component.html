@@ -6,8 +6,8 @@
       <h5 class="hint">Use your User ID to sign in or create one now</h5>
     </label>
     <div class="login-group">
-      <div class="auth-source select" [(ngModel)]="role" formControlName="loginRole">
-        <select id="login-auth-source-1">
+      <div class="auth-source select">
+        <select id="login-auth-source-1" [(ngModel)]="role" formControlName="loginRole">
           <option>Student</option>
           <option>Staff</option>
           <option>Faculty</option>

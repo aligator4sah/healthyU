@@ -8,18 +8,14 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class QuestionnaireComponent implements OnInit {
 
-  form1: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
-    this.buildForm();
   }
 
   buildForm() {
-    this.form1 = this.fb.group({});
   }
 
 }

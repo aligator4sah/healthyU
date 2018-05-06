@@ -4,16 +4,14 @@ import { AdminLoginComponent } from './admin-login.component';
 import {ClarityModule} from '@clr/angular';
 import {RouterModule} from '@angular/router';
 
-export const routes = [
-  {path: '', redirectTo: 'admin-login', patchMathch: 'full'},
-  {path: 'admin-login', component: AdminLoginComponent},
-];
-
 @NgModule({
   imports: [
     CommonModule,
     ClarityModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild([
+      {path: '', component: AdminLoginComponent}
+      ]
+    ),
   ],
   declarations: [AdminLoginComponent],
   exports: [

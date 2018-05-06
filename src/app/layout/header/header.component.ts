@@ -8,9 +8,16 @@ import { ClarityIcons } from '@clr/icons';
 })
 export class HeaderComponent implements OnInit {
 
+  isAdmin: boolean = false;
+
+
   constructor() { }
 
   ngOnInit() {
+    let role = localStorage.getItem('curRole');
+    if (role == 'admin') {
+      this.isAdmin = true;
+    }
   }
 
 }
