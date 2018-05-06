@@ -5,8 +5,7 @@ import {ClarityModule} from '@clr/angular';
 import {RouterModule} from '@angular/router';
 
 export const routes = [
-  {path: '', component: AdminLoginComponent},
-  {path:'adminDashboard', loadChildren: '../admin-dashboard/admin-dashboard.module#AdminDashboardModule'}
+  {path: '', component: AdminLoginComponent}
 ];
 
 

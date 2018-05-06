@@ -25,7 +25,11 @@ export class LoginComponent implements OnInit {
   userType = UserType;
   gender = Gender;
   secureQue = SecurityQues;
-  time = [1, 2, 3];
+  time = [
+    {id: 1, qid: 'Q1', aid: 'A1', question: '', answer: ''},
+    {id: 2, qid: 'Q2', aid: 'A2', question: '', answer: ''},
+    {id: 3, qid: 'Q3', aid: 'A3', question: '', answer: ''},
+  ];
 
   @ViewChild("wizardlg") wizardLarge: ClrWizard;
 
@@ -52,9 +56,12 @@ export class LoginComponent implements OnInit {
       email: ['', []],
     });
     this.form3 = this.fb.group({
-      q1: ['', []],
-      q2: ['', []],
-      q3: ['', []]
+      Q1: ['', []],
+      Q2: ['', []],
+      Q3: ['', []],
+      A1: ['', []],
+      A2: ['', []],
+      A3: ['', []],
     });
   }
 

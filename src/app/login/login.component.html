@@ -2,7 +2,7 @@
   <form class="login" [formGroup]="loginForm">
     <label class="title">
       <h3 class="welcome">Welcome to</h3>
-      <strong>healthy <span class="special-letter"> U </span> System</strong>
+      <strong>Healthy <span class="special-letter"> U </span> System</strong>
       <h5 class="hint">Use your User ID to sign in or create one now</h5>
     </label>
     <div class="login-group">
@@ -41,7 +41,7 @@
   <clr-wizard-button [type]="'finish'">Finish</clr-wizard-button>
 
   <!--<clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid">-->
-  <clr-wizard-page>
+  <clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid">
     <ng-template clrPageTitle>Required Information</ng-template>
     <form [formGroup]="form1">
     <section class="form-block">
@@ -85,8 +85,8 @@
         </label>
       </div>
       <div class="form-group">
-        <label for="dateControl">Date</label>
-        <input id="dateControl" type="date" clrDate formControlName="dob" required>
+        <label for="dateControl">Date of Birth</label>
+        <input id="dateControl" type="date" clrDate formControlName="dob" [(ngModel)]="user.dob" required>
       </div>
       <div class="form-group">
         <label for="empType">User type</label>
@@ -95,7 +95,7 @@
                   name="employeeType"
                   [(ngModel)]="user.type" formControlName="role" required>
             <option value="Default">Select User Type...</option>
-            <option *ngFor="let type of userType" [value]="type">{{type.value}}</option>
+            <option *ngFor="let type of userType" [value]="type.value">{{type.value}}</option>
           </select>
         </div>
       </div>
@@ -106,7 +106,7 @@
                   name="employeeGender"
                   [(ngModel)]="user.gender" formControlName="gender" required>
             <option value="Default">Select User Gender...</option>
-            <option *ngFor="let ge of gender" [value]="ge">{{ge.value}}</option>
+            <option *ngFor="let ge of gender" [value]="ge.value">{{ge.value}}</option>
           </select>
         </div>
       </div>
@@ -138,17 +138,17 @@
       <section class="form-block">
         <div *ngFor="let t of time">
         <div class="form-group">
-          <label>{{t}} .Security Question</label>
+          <label>{{t.id}} .Security Question</label>
           <div class="select">
             <select name="secq1"
-                    [(ngModel)]="user.q1" formControlName="q1" required>
-              <option *ngFor="let ques of secureQue" [value]="ques">{{ques.value}}</option>
+                    [(ngModel)]="t.question" [formControlName]="t.qid" required>
+              <option *ngFor="let ques of secureQue" [value]="ques.value">{{ques.value}}</option>
             </select>
           </div>
         </div>
         <div class="form-group">
-          <label>{{t}} .Security Answer</label>
-          <input type="text" [(ngModel)]="user.q2" formControlName="q2" placeholder="Enter Answer">
+          <label>&nbsp; &nbsp; Security Answer</label>
+          <input type="text" [(ngModel)]="t.answer" [formControlName]="t.aid" placeholder="Enter Answer">
         </div>
         </div>
       </section>
@@ -156,6 +156,19 @@
   </clr-wizard-page>
   <clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid || !form2.valid">
     <ng-template clrPageTitle>Confirmation</ng-template>
-    ...
+    <ul class="list">
+      <li><label>User Name: </label><span class="confirm-info"> {{user.username}}</span></li>
+      <li><label>First Name: </label><span class="confirm-info"> {{user.firstName}}</span></li>
+      <li><label>Last Name: </label><span class="confirm-info"> {{user.lastName}}</span></li>
+      <li><label>Role: </label><span class="confirm-info"> {{user.type }}</span></li>
+      <li><label>Gender: </label><span class="confirm-info"> {{user.gender}}</span></li>
+      <li><label>Date of birth: </label><span class="confirm-info"> {{user.dob | date:"MM/dd/yy"}}</span></li>
+      <li><label>Phone: </label><span class="confirm-info"> {{user.phone}}</span></li>
+      <li><label>Email: </label><span class="confirm-info"> {{user.email}}</span></li>
+      <div *ngFor="let t of time">
+        <li><label>Security Question {{t.id}}: </label><span class="confirm-info"> {{t.question}}</span></li>
+        <li><label>Security Answer {{t.id}}: </label><span class="confirm-info"> {{t.answer}}</span></li>
+      </div>
+    </ul>
   </clr-wizard-page>
 </clr-wizard>

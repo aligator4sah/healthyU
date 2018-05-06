@@ -21,7 +21,8 @@ export const routes = [
   exports: [
     HeaderModule,
     RouterModule,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    ClarityModule
   ]
 
 })

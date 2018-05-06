@@ -14,9 +14,16 @@
     </div>
   </div>
   <div class="header-actions">
-    <a href="..." class="nav-link nav-icon">
-      <clr-icon shape="cog"></clr-icon>
-    </a>
+    <clr-dropdown>
+      <button class="nav-icon" clrDropdownTrigger>
+        <clr-icon shape="cog"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a href="..." clrDropdownItem>Edit Profile</a>
+        <a routerLink="/login" clrDropdownItem>Log out</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
   </div>
 </header>
 
