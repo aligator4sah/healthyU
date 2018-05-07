@@ -8,6 +8,7 @@ export const routes = [
     children: [
       {path: '', redirectTo: 'question', pathMatch: 'full'},
       {path: 'question', loadChildren: '../workspace/questionnaire/questionnaire.module#QuestionnaireModule'},
+      {path: 'demographic', loadChildren: '../workspace/demographic/demographic.module#DemographicModule'},
     ]
   }
 ];
