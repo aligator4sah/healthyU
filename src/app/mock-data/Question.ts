@@ -33,25 +33,34 @@ export class Subdomain {
 
 export class Question {
   qid: number;
+  key: string;
   label: string;
   hint: string;
   type: string;
-  ansOptions: any;
+  ansOptions: {key: string, value: string}[] = [];
   order: number;
+  value: string;
+  required: boolean;
   constructor(options: {
     qid?: number,
+    key?: string,
     label?: string,
     hint?: string,
     type?: string,
     ansOptions?: any,
     order?: number,
+    value?: string,
+    required?: boolean,
   } = {}) {
     this.qid = options.qid;
+    this.key = options.key || '';
     this.label = options.label;
     this.hint = options.hint || '';
     this.type = options.type;
-    this.ansOptions = options.ansOptions || {};
+    this.ansOptions = options.ansOptions || [];
     this.order = options.order || -1;
+    this.value = options.value || '';
+    this.required = options.required || false;
   }
 }
 

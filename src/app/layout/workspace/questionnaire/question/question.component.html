@@ -1,0 +1,32 @@
+<div [formGroup]="form">
+
+  <div [ngSwitch]="question.type">
+    <!--text question -->
+    <div class="form-group" *ngSwitchCase="'textbox'">
+      <label for="input1">{{question.label}}</label>
+      <input type="text" id="input1" size="45"  [formControlName]="question.key">
+    </div>
+
+    <!-- dropdown question-->
+    <div class="form-group" *ngSwitchCase="'dropdown'">
+      <label for="select1">{{question.label}}</label>
+      <div class="select">
+        <select id="select1" [formControlName]="question.key">
+          <option *ngFor="let opt of question.ansOptions" [value]="opt.key">{{opt.value}}</option>
+        </select>
+      </div>
+    </div>
+
+    <!--Radio button questions (less then three options)-->
+    <div class="form-group" *ngSwitchCase="'radiobutton'">
+      <label>{{ question.label }}</label>
+      <div class="radio-inline" *ngFor="let opt of question.ansOptions">
+        <input type="radio" [name]="question.key" [id]="opt.key" [value]="opt.key" [formControlName]="question.key">
+        <label [for]="opt.key">{{opt.value}}</label>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
+</div>

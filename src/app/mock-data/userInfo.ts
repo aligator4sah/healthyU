@@ -71,7 +71,7 @@ export const Gender = [
 
 
 export const SecurityQues = [
-  {key: 'Q1', value: "What's your mother's middle name?", answer: ""},
-  {key: 'Q2', value: "What is your favorite animal?", answer: ""},
-  {key: 'Q3', value: "What is your favorite vocation place?", answer: ""}
+  {key: 'Q1', value: "What's your mother's middle name?"},
+  {key: 'Q2', value: "What is your favorite animal?"},
+  {key: 'Q3', value: "What is your favorite vocation place?"}
 ];

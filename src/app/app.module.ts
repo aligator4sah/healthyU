@@ -7,6 +7,8 @@ import {ClarityModule} from '@clr/angular';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ClarityIconsApi} from '@clr/icons/clr-icons-api';
+import {QuestionService} from './service/question.service';
+import {QuestionControlService} from './service/question-control.service';
 
 
 @NgModule({
@@ -19,7 +21,7 @@ import {ClarityIconsApi} from '@clr/icons/clr-icons-api';
     ClarityModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [QuestionService, QuestionControlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
