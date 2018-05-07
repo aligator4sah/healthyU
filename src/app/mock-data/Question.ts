@@ -67,9 +67,11 @@ export class Question {
 export class DomQuestion extends Question {
   domain: string;
   subdomain: string;
+  weight: number;
   constructor(options: {} = {}) {
     super(options);
     this.domain = options['domain'] || '';
     this.subdomain = options['subdomain'] || '';
+    this.weight = options['weight'] || 0;
   }
 }
