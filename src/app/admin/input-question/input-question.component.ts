@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {DomQuestion, Question} from '../../mock-data/Question';
+import "rxjs/add/operator/debounceTime";
 
 @Component({
   selector: 'app-input-question',
@@ -13,7 +14,6 @@ export class InputQuestionComponent implements OnInit {
 
   question: DomQuestion;
 
-
   type = TYPE;
   Domain = DOMAIN;
   Subdomain = SUBDOMAIN;
@@ -24,6 +24,7 @@ export class InputQuestionComponent implements OnInit {
   options: Options[] = [];
   isQues: boolean = false;
   isText: boolean = false;
+  needOptions: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -42,17 +43,29 @@ export class InputQuestionComponent implements OnInit {
       subdomain: ['', [Validators.required]],
       weight: ['', [Validators.required]],
       order: ['', [Validators.required]],
+      anstype: ['', [Validators.required]],
       optnum: ['', [Validators.required]]
     });
     this.ansForm = this.fb.group({});
+
+    this.form.controls["quesType"].valueChanges.debounceTime(50).subscribe((value) => {
+      this.getType(value);
+    });
+
+    this.form.controls["optnum"].valueChanges.debounceTime(50).subscribe((value)=> {
+      this.getAnsType(value);
+    });
+    this.form.controls["optnum"].valueChanges.debounceTime(50).subscribe((value)=> {
+      this.getAnsNumber(value);
+    })
   }
 
   onSubmit() {
 
   }
 
-  getType() {
-    if(this.questionType === "questionnaire") {
+  getType(value: string) {
+    if(value === "questionnaire") {
      this.isQues = true;
     } else {
       this.question.domain = '';
@@ -61,15 +74,17 @@ export class InputQuestionComponent implements OnInit {
     }
   }
 
-  getAnsType() {
-    if (this.question.type === "textbox") {
+  getAnsType(value: string) {
+    if (value === "textbox") {
       this.isText= true;
+    } else {
+      this.needOptions = true;
     }
   }
 
-  getAnsNumber() {
-    if (this.optionNum > 0) {
-      const number = Array.apply(null, {length: this.optionNum}).map(Number.call, Number);
+  getAnsNumber(optnum: number) {
+    if (optnum > 0) {
+      const number = Array.apply(null, {length: optnum}).map(Number.call, Number);
       for (let num of number) {
         let opt = {key: num, extent: '', value: ''};
         this.options.push(opt);
