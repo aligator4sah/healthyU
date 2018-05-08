@@ -6,6 +6,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {QuestionModule} from '../questionnaire/question/question.module';
 import {CompleteCardModule} from '../complete-card/complete-card.module';
+import {FooterModule} from '../footer/footer.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import {CompleteCardModule} from '../complete-card/complete-card.module';
     ReactiveFormsModule,
     QuestionModule,
     CompleteCardModule,
+    FooterModule,
     RouterModule.forChild([
       {path: '', component: DemographicComponent}
     ])
@@ -28,6 +30,7 @@ import {CompleteCardModule} from '../complete-card/complete-card.module';
     RouterModule,
     QuestionModule,
     CompleteCardModule,
+    FooterModule,
     DemographicComponent
   ]
 })

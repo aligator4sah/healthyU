@@ -22,7 +22,7 @@ export class DemographicComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.questions = this.qs.getQuestions();
+    this.questions = this.qs.getDemoQuestion();
     this.form = this.qcs.toFormGroup(this.questions);
   }
 

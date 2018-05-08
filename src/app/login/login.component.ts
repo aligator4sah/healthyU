@@ -56,12 +56,12 @@ export class LoginComponent implements OnInit {
       email: ['', []],
     });
     this.form3 = this.fb.group({
-      Q1: ['', []],
-      Q2: ['', []],
-      Q3: ['', []],
-      A1: ['', []],
-      A2: ['', []],
-      A3: ['', []],
+      Q1: ['', [Validators.required]],
+      Q2: ['', [Validators.required]],
+      Q3: ['', [Validators.required]],
+      A1: ['', [Validators.required]],
+      A2: ['', [Validators.required]],
+      A3: ['', [Validators.required]],
     });
   }
 

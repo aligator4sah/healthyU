@@ -1,0 +1,28 @@
+.form-group {
+  width: 90%;
+  font-size: 16px;
+}
+
+.form-group label{
+  width: 900px;
+}
+
+
+.form-group .select {
+  margin-left: 10px;
+  padding-left: 700px;
+}
+
+.form-group .radio-inline {
+  margin-left: 10px;
+  padding-left: 300px;
+}
+
+
+
+
+.form-group .inputbox {
+  margin-left: 210px;
+  padding-left: 200px;
+  left: 200px;
+}

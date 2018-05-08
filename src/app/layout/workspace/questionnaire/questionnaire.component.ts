@@ -23,8 +23,10 @@ export class QuestionnaireComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.questionGroup1 = this.qs.getQuestions();
+    this.questionGroup1 = this.qs.getHealthQues();
     this.form1 = this.qcs.toFormGroup(this.questionGroup1);
+    this.questionGroup2 = this.qs.getMobilityQues();
+    this.form2 = this.qcs.toFormGroup(this.questionGroup2)
   }
 
   onSubmit() {

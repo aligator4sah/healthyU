@@ -7,7 +7,7 @@
     </label>
     <div class="login-group">
       <div class="auth-source select">
-        <select id="login-auth-source-1" [(ngModel)]="role" formControlName="loginRole">
+        <select id="login-auth-source-1" formControlName="loginRole">
           <option>Student</option>
           <option>Staff</option>
           <option>Faculty</option>
@@ -52,8 +52,7 @@
                role="tooltip"
                class="tooltip tooltip-validation tooltip-md">
           <input type="text" id="empUserName" placeholder="Enter User name"
-                 name="userName"
-                 [(ngModel)]="user.username" formControlName="username">
+                 name="username" formControlName="username">
           <span class="tooltip-content"> User Name is Required. </span>
         </label>
       </div>
@@ -64,8 +63,7 @@
                role="tooltip"
                class="tooltip tooltip-validation tooltip-md">
           <input type="text" id="empFirstName" placeholder="Enter first name"
-                 name="firstName"
-                 [(ngModel)]="user.firstName" formControlName="firstname">
+                 name="firstname" formControlName="firstname">
           <span class="tooltip-content"> First Name is Required. </span>
         </label>
       </div>
@@ -76,8 +74,7 @@
                role="tooltip"
                class="tooltip tooltip-validation tooltip-md">
           <input type="text" id="empLastName" placeholder="Enter last name"
-                 name="lastName"
-                 [(ngModel)]="user.lastName"
+                 name="lastname"
                  formControlName="lastname">
           <span class="tooltip-content">
                     Last Name is Required.
@@ -86,14 +83,14 @@
       </div>
       <div class="form-group">
         <label for="dateControl">Date of Birth</label>
-        <input id="dateControl" type="date" clrDate formControlName="dob" [(ngModel)]="user.dob" required>
+        <input id="dateControl" type="date" clrDate formControlName="dob" required>
       </div>
       <div class="form-group">
         <label for="empType">User type</label>
         <div class="select">
           <select id="empType"
-                  name="employeeType"
-                  [(ngModel)]="user.type" formControlName="role" required>
+                  name="role"
+                  formControlName="role" required>
             <option value="Default">Select User Type...</option>
             <option *ngFor="let type of userType" [value]="type.value">{{type.value}}</option>
           </select>
@@ -103,8 +100,7 @@
         <label for="empGender">Gender</label>
         <div class="select">
           <select id="empGender"
-                  name="employeeGender"
-                  [(ngModel)]="user.gender" formControlName="gender" required>
+                  name="employeeGender" formControlName="gender" required>
             <option value="Default">Select User Gender...</option>
             <option *ngFor="let ge of gender" [value]="ge.value">{{ge.value}}</option>
           </select>
@@ -121,18 +117,18 @@
     <ng-template clrPageTitle>Optional Information</ng-template>
     <div class="form-group">
       <label for="phone">Phone</label>
-      <input id="phone" type="text" [(ngModel)]="user.phone" formControlName="phone" placeholder="Enter Phone Number">
+      <input id="phone" type="text" formControlName="phone" placeholder="Enter Phone Number">
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input id="email" type="text" [(ngModel)]="user.email" formControlName="email" placeholder="Enter Email">
+      <input id="email" type="text" formControlName="email" placeholder="Enter Email">
     </div>
     </section>
     </form>
   </clr-wizard-page>
 
   <!-- Security Questions-->
-  <clr-wizard-page>
+  <clr-wizard-page [clrWizardPageNextDisabled]="!form3.valid">
     <ng-template clrPageTitle>Security Information</ng-template>
     <form [formGroup]="form3">
       <section class="form-block">
@@ -148,7 +144,7 @@
         </div>
         <div class="form-group">
           <label>&nbsp; &nbsp; Security Answer</label>
-          <input type="text" [(ngModel)]="t.answer" [formControlName]="t.aid" placeholder="Enter Answer">
+          <input type="text" [(ngModel)]="t.answer" [formControlName]="t.aid" placeholder="Enter Answer" size="38">
         </div>
         </div>
       </section>
@@ -157,14 +153,14 @@
   <clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid || !form2.valid">
     <ng-template clrPageTitle>Confirmation</ng-template>
     <ul class="list">
-      <li><label>User Name: </label><span class="confirm-info"> {{user.username}}</span></li>
-      <li><label>First Name: </label><span class="confirm-info"> {{user.firstName}}</span></li>
-      <li><label>Last Name: </label><span class="confirm-info"> {{user.lastName}}</span></li>
-      <li><label>Role: </label><span class="confirm-info"> {{user.type }}</span></li>
-      <li><label>Gender: </label><span class="confirm-info"> {{user.gender}}</span></li>
-      <li><label>Date of birth: </label><span class="confirm-info"> {{user.dob | date:"MM/dd/yy"}}</span></li>
-      <li><label>Phone: </label><span class="confirm-info"> {{user.phone}}</span></li>
-      <li><label>Email: </label><span class="confirm-info"> {{user.email}}</span></li>
+      <li><label>User Name: </label><span class="confirm-info"> {{ form1.get('username').value }}</span></li>
+      <li><label>First Name: </label><span class="confirm-info"> {{ form1.get('firstname').value }}</span></li>
+      <li><label>Last Name: </label><span class="confirm-info"> {{ form1.get('lastname').value }}</span></li>
+      <li><label>Role: </label><span class="confirm-info"> {{ form1.get('role').value }}</span></li>
+      <li><label>Gender: </label><span class="confirm-info"> {{ form1.get('gender').value }}</span></li>
+      <li><label>Date of birth: </label><span class="confirm-info"> {{ form1.get('dob').value | date:"MM/dd/yy"}}</span></li>
+      <li><label>Phone: </label><span class="confirm-info"> {{ form2.get('phone').value }}</span></li>
+      <li><label>Email: </label><span class="confirm-info"> {{form2.get('email').value}}</span></li>
       <div *ngFor="let t of time">
         <li><label>Security Question {{t.id}}: </label><span class="confirm-info"> {{t.question}}</span></li>
         <li><label>Security Answer {{t.id}}: </label><span class="confirm-info"> {{t.answer}}</span></li>
