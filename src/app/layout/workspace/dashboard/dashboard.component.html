@@ -1,3 +1,120 @@
-<p>
-  dashboard works!
-</p>
+<div class="main-container">
+  <div class="row">
+    <app-complete-card></app-complete-card>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <div class="card top-card">
+        <div class="card-title">
+          <clr-icon shape="home" size="36"></clr-icon> &nbsp;
+          <span>Dashboard</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-block">
+          <div class="card-text">
+           <!-- general graph place-->
+            <div class="row">
+              <!--left side bar chart -->
+              <div class="col-md-7">
+                <h4>General Well-being Score</h4>
+                <div style="display: block; width: 650px">
+                  <canvas baseChart
+                          [datasets]="barChartData"
+                          [labels]="barChartLabels"
+                          [options]="barChartOptions"
+                          [legend]="barChartLegend"
+                          [chartType]="barChartType"
+                          (chartHover)="chartHovered($event)"
+                          (chartClick)="chartClicked($event)"></canvas>
+                </div>
+              </div>
+              <!--right side radar chart -->
+              <div class="col-md-4">
+                <h4>Well-being Score Composition</h4>
+                <br>
+                <div style="display: block; width: 450px; height: 250px">
+                  <canvas baseChart
+                          [data]="polarAreaChartData"
+                          [labels]="polarAreaChartLabels"
+                          [legend]="polarAreaLegend"
+                          [chartType]="polarAreaChartType"
+                          (chartHover)="chartHovered($event)"
+                          (chartClick)="chartClicked($event)"></canvas>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <!--Session graph (if exist) -->
+          <a class="label label-purple clickable"> Session 1
+            <span class="badge">1</span>
+          </a>
+          <a class="label label-blue clickable"> Session 2
+            <span class="badge">2</span>
+          </a>
+          <a class="label label-orange clickable"> Total
+            <span class="badge">3</span>
+          </a>
+        </div>
+      </div>
+      <!-- Select domain to start new session-->
+      <div class="card bottom-card">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="bottom">
+            <div class="row">
+              <div class="col-lg">
+                <span>
+                  <a><clr-icon shape="angle-double" style="transform: rotate(270deg);" size="26"></clr-icon> &nbsp;</a>
+                </span>
+              </div>
+              <div class="col-lg">
+                <span>
+                  <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-right">
+                      <clr-icon shape="clipboard" size="26" class="is-solid is-highlight"></clr-icon>
+                      <span class="tooltip-content">Demographic</span>
+                  </a>
+                </span>
+              </div>
+              <div class="col-lg">
+                <span>
+                  <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-right">
+                      <clr-icon shape="accessibility-2" size="26" class="is-solid"></clr-icon>
+                      <span class="tooltip-content">Physical</span>
+                  </a>
+                </span>
+              </div>
+              <div class="col-lg">
+                <span>
+                  <span>
+                  <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-right">
+                      <clr-icon shape="chat-bubble" size="26" class="is-solid is-success"></clr-icon>
+                      <span class="tooltip-content">Relational</span>
+                  </a>
+                </span>
+                </span>
+              </div>
+              <div class="col-lg">
+                <span>
+                  <span>
+                  <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-right">
+                      <clr-icon shape="heart" size="26" class="is-solid is-warning"></clr-icon>
+                      <span class="tooltip-content">Physical</span>
+                  </a>
+                </span>
+                </span>
+              </div>
+              <div class="col-lg">
+                <span>
+                  <a><clr-icon shape="angle-double" style="transform: rotate(90deg);" size="26"></clr-icon> &nbsp;</a>
+                </span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

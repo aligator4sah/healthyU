@@ -23,7 +23,8 @@
       </div>
       <button type="submit" class="btn btn-primary" (click)="submit()">Log In</button>
       <a routerLink="" class="signup" (click)="signUp()">Sign up for a User ID</a>
-      <a routerLink="" class="signup">Forget Password</a>
+      <a routerLink="" class="signup" (click)="openForget()">Forget Password</a>
+      <app-forget-psd [basic]="forget"></app-forget-psd>
       <div *ngIf="isValid">
         Invalid user name or password
       </div>

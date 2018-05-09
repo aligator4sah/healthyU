@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   isValid: boolean = false;
   lgOpen: boolean = false;
   role: string;
+  forget: boolean = false;
 
   form1: FormGroup;
   form2: FormGroup;
@@ -75,6 +76,10 @@ export class LoginComponent implements OnInit {
   signUp() {
     this.lgOpen = true;
 
+  }
+
+  openForget() {
+    this.forget = true;
   }
 
   register() {

@@ -4,6 +4,7 @@ import { LoginComponent } from './login.component';
 import {RouterModule} from '@angular/router';
 import {ClarityModule} from '@clr/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ForgetPsdModule} from './forget-psd/forget-psd.module';
 
 @NgModule({
   imports: [
@@ -11,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ClarityModule,
     ReactiveFormsModule,
     FormsModule,
+    ForgetPsdModule,
     RouterModule.forChild([
       {path: '', component: LoginComponent}
     ])
@@ -21,6 +23,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
+    ForgetPsdModule,
     ClarityModule
   ]
 })
