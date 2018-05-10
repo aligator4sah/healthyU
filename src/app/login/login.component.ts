@@ -48,6 +48,8 @@ export class LoginComponent implements OnInit {
       username: ['', [Validators.required, Validators.minLength(4)]],
       firstname: ['', []],
       lastname: ['', []],
+      psd: ['', [Validators.required, Validators.minLength(6)]],
+      repsd: ['', [Validators.required, Validators.minLength(6)]],
       role: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       dob: ['', [Validators.required]],

@@ -4,6 +4,7 @@ export class UserModel {
   firstName: string;
   lastName: string;
   type: string;
+  password: string;
   username: string;
   dob: string;
   gender: string;
@@ -17,6 +18,7 @@ export class UserModel {
     firstName?: string,
     lastName?: string,
     type?: string,
+    password?: string,
     dob?: string;
     username?: string,
     gender?: string,
@@ -31,6 +33,7 @@ export class UserModel {
     this.lastName = options.lastName || '';
     this.type = options.type || '';
     this.username = options.username || '';
+    this.password = options.password || '';
     this.gender = options.gender || '';
     this.phone = options.phone || '';
     this.email = options.email || '';
