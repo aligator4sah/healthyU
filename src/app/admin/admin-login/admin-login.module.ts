@@ -10,16 +10,15 @@ import {AdminDashboardModule} from '../admin-dashboard/admin-dashboard.module';
     CommonModule,
     ClarityModule,
     RouterModule.forChild([
-      {path: '', redirectTo: 'login', pathMatch: 'full'},
-      {path: 'login', component: AdminLoginComponent},
-      {path: 'dashboard', loadChildren: '../admin-dashboard/admin-dashboard.module#AdminDashboardModule'}
+      {path: '', component: AdminLoginComponent},
+      {path: 'dashboard', loadChildren: '../admin-dashboard/admin-dashboard.module#AdminDashboardModule'},
       ]),
   ],
   declarations: [AdminLoginComponent],
   exports: [
     ClarityModule,
     AdminLoginComponent,
-    RouterModule
+    RouterModule,
   ]
 })
 export class AdminLoginModule { }

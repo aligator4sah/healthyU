@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {DomQuestion, Question} from '../../mock-data/Question';
+import {QuestionService} from '../../service/question.service';
+import {ClrDatagridStringFilterInterface} from '@clr/angular';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-input-domain',
@@ -6,50 +10,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input-domain.component.css']
 })
 export class InputDomainComponent implements OnInit {
-  selected: boolean = false;
+  createDom: boolean = false;
+  form: FormGroup;
 
-  permissions: any = [
-    {
-      type: "Health Related",
-      expanded: true,
-      rights: [
-        {
-          name: "Drink",
-          enable: true
-        },
-        {
-          name: "Nutrition",
-          enable: true
-        },
-        {
-          name: "Smoke",
-          enable: false
-        },
-        {
-          name: "Alcoholic",
-          enable: false
-        }
-      ]
-    },
-    {
-      type: "Exercise",
-      expanded: true,
-      rights: [
-        {
-          name: "Sports",
-          enable: true
-        },
-        {
-          name: "Mobility",
-          enable: true
-        }
-      ]
-    }
-  ];
-
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+      this.form = this.fb.group({
+        domain: ['', [Validators.required]],
+        weight: ['', [Validators.required]],
+      });
+  }
+
+  addDomain() {
+      this.createDom = !this.createDom;
+  }
+
+  submit() {
+    console.log(this.form.value);
+    this.createDom = false;
   }
 
 }

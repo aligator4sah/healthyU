@@ -9,15 +9,16 @@ import {Router} from '@angular/router';
 export class AdminLoginComponent implements OnInit {
 
   constructor(
-    private route: Router,
+    private router: Router,
   ) { }
 
   ngOnInit() {
   }
 
   login() {
-    this.route.navigateByUrl("admin/dashboard");
     localStorage.setItem('curRole', 'admin');
+    this.router.navigateByUrl('/admin/dashboard');
+    // this.router.navigateByUrl('/adminDashboard');
+    // this.router.navigate(['./adminDashboard']);
   }
-
 }

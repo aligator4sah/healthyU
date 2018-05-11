@@ -18,17 +18,3 @@
   height: 580px;
 }
 
-
-.row {
-  padding-left: 11px;
-}
-
-
-.card-block {
-  overflow: auto;
-}
-
-.card-footer {
-  position: absolute;
-  bottom: 10px;
-}

@@ -1,0 +1,51 @@
+<div class="main-container">
+  <div class="row">
+    <app-admin-card></app-admin-card>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+      <!-- input question part -->
+      <div class="card">
+        <div class="card-title">
+          <clr-icon shape="library" size="36"></clr-icon> &nbsp;
+          <span>Question Management</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-block">
+          <div class="card-text">
+            <div class="row">
+              <clr-datagrid style="width: 95%; height: 90%; padding-left:15px">
+                <clr-dg-column style="width: 505px">Description
+                  <clr-dg-string-filter [clrDgStringFilter]="labelFilter"></clr-dg-string-filter>
+                </clr-dg-column>
+                <clr-dg-column>Order</clr-dg-column>
+                <clr-dg-column>Domain</clr-dg-column>
+                <clr-dg-column>Weight</clr-dg-column>
+                <clr-dg-column>Type</clr-dg-column>
+
+                <clr-dg-row *ngFor="let ques of quesGroup">
+                  <clr-dg-cell style="width: 505px">{{ques.label}}</clr-dg-cell>
+                  <clr-dg-cell>{{ques.key}}</clr-dg-cell>
+
+                  <clr-dg-cell>{{ques.domain}}</clr-dg-cell>
+                  <clr-dg-cell>{{ques.weight}}</clr-dg-cell>
+                  <clr-dg-cell>{{ques.type}}</clr-dg-cell>
+
+                  <clr-dg-action-overflow>
+                    <button class="action-item" (click)="onEdit(ques)">Edit</button>
+                    <button class="action-item" (click)="onDelete(ques)">Delete</button>
+                  </clr-dg-action-overflow>
+                </clr-dg-row>
+
+                <clr-dg-footer>
+                  <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                    of {{pagination.totalItems}} questions
+                  </clr-dg-pagination>
+                </clr-dg-footer>
+              </clr-datagrid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

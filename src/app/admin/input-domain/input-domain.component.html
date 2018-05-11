@@ -5,63 +5,46 @@
       <!-- input question part -->
       <div class="card">
         <div class="card-title">
-          <clr-icon shape="library" size="36"></clr-icon> &nbsp;
+          <clr-icon shape="add-text" size="36"></clr-icon> &nbsp;
           <span>Domain Management</span>
         </div>
         <div class="card-divider"></div>
         <div class="card-block">
-          <div class="card-text">
-            <div class="row">
-              <!-- Treenode left side-->
-              <div class="col-md-4">
-                <clr-tree-node [(clrSelected)]="selected">
-                  Physical domain
-                  <ng-template [clrIfExpanded]="true">
-                    <clr-tree-node
-                      *ngFor="let permission of permissions"
-                      [(clrSelected)]="permission.selected">
-                      {{permission.type}}
-                      <ng-template [(clrIfExpanded)]="permission.expanded">
-                        <clr-tree-node *ngFor="let right of permission.rights" [(clrSelected)]="right.enable">
-                          {{right.name}}
-                        </clr-tree-node>
-                      </ng-template>
-                    </clr-tree-node>
-                  </ng-template>
-                </clr-tree-node>
-              </div>
-              <div class="col-md-8">
-                <ng-template>
-                  <ol class="list">
-                    <li>...</li>
-                    <li>
-                      Ullamco laboris nisi ut aliquip
-                      <ul class="list">
-                        <li>Consequat</li>
-                        <li>Adipisicing</li>
-                        <li>Exercitation</li>
-                      </ul>
-                    </li>
-                    <li>Reprehenderit in voluptate</li>
-                    <li>
-                      Mollit anim id
-                      <ol class="list">
-                        <li>Consequat</li>
-                        <li>Adipisicing</li>
-                        <li>Exercitation</li>
-                      </ol>
-                    </li>
-                    <li>Reprehenderit in voluptate</li>
-                  </ol>
-                </ng-template>
-              </div>
-
-            </div>
-
-
-          </div>
+          <ul class="list">
+            <li>Physical Domain
+              <span class="weight">Weight: 3</span>
+              <clr-icon shape="trash" class="is-solid is-error delete" size="26"></clr-icon>
+            </li>
+            <li>
+             Behavioral Domain
+              <span class="weight">Weight: 5</span>
+              <clr-icon shape="trash" class="is-solid is-error delete" size="26"></clr-icon>
+            </li>
+            <li>
+              Spiritual Domain
+              <span class="weight">Weight: 4.6</span>
+              <clr-icon shape="trash" class="is-solid is-error delete" size="26"></clr-icon>
+            </li>
+          </ul>
         </div>
+        <div class="card-footer">
+          <a class="btn btn-primary" (click)="addDomain()">Add Domain</a>
+        </div>
+        <!--create new domain -->
+        <div *ngIf="createDom" class="domain-input">
+          <form [formGroup]="form">
+            <section class="form-block">
+              <div class="form-group">
+                <label for="formFields_1">Input Domain and Weight</label>
+                <input type="text" id="formFields_1" placeholder="Domain" size="30" formControlName="domain">
+                <input type="number" id="formFields_2" placeholder="Weight" size="20" formControlName="weight">
+              </div>
+            </section>
+            <button type="button" class="btn btn-secondary" (click)="submit()">Submit</button>
+          </form>
+        </div>
+
+      </div>
       </div>
     </div>
   </div>
-</div>

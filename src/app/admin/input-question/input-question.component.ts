@@ -12,11 +12,13 @@ export class InputQuestionComponent implements OnInit {
   form: FormGroup;
   ansForm: FormGroup;
 
+  inputActive: boolean = true;
+  confirmActive: boolean = false;
+
   question: DomQuestion;
 
   type = TYPE;
-  Domain = DOMAIN;
-  Subdomain = SUBDOMAIN;
+  Domain = null;
   AnsType = ANSTYPE;
 
   questionType: string;
@@ -40,22 +42,20 @@ export class InputQuestionComponent implements OnInit {
       quesType: ['', [Validators.required]],
       desp: ['', [Validators.required, Validators.minLength(4)]],
       domain: ['', [Validators.required]],
-      subdomain: ['', [Validators.required]],
       weight: ['', [Validators.required]],
       order: ['', [Validators.required]],
       anstype: ['', [Validators.required]],
-      optnum: ['', [Validators.required]]
+      optnum: ['', [Validators.required]],
     });
-    this.ansForm = this.fb.group({});
 
-    this.form.controls["quesType"].valueChanges.debounceTime(50).subscribe((value) => {
+    this.form.controls["quesType"].valueChanges.subscribe((value) => {
       this.getType(value);
     });
 
-    this.form.controls["optnum"].valueChanges.debounceTime(50).subscribe((value)=> {
+    this.form.controls["optnum"].valueChanges.subscribe((value)=> {
       this.getAnsType(value);
     });
-    this.form.controls["optnum"].valueChanges.debounceTime(50).subscribe((value)=> {
+    this.form.controls["optnum"].valueChanges.subscribe((value)=> {
       this.getAnsNumber(value);
     })
   }
@@ -67,10 +67,6 @@ export class InputQuestionComponent implements OnInit {
   getType(value: string) {
     if(value === "questionnaire") {
      this.isQues = true;
-    } else {
-      this.question.domain = '';
-      this.question.subdomain = '';
-      this.question.weight = 0;
     }
   }
 
@@ -83,14 +79,19 @@ export class InputQuestionComponent implements OnInit {
   }
 
   getAnsNumber(optnum: number) {
-    if (optnum > 0) {
-      const number = Array.apply(null, {length: optnum}).map(Number.call, Number);
-      for (let num of number) {
-        let opt = {key: num, extent: '', value: ''};
-        this.options.push(opt);
-      }
-      this.ansForm = new FormGroup({ansKey: new FormControl(), ansValue: new FormControl()});
+    let id = 0;
+    while (optnum > 0 && id < optnum) {
+      let opt = {key: id, extent: id, value: ''};
+      this.options.push(opt);
+      id++;
     }
+
+    let group: any = {};
+    this.options.forEach(option => {
+      group[option.extent] = new FormControl(option.extent || Validators.required);
+      group[option.key] = new FormControl(option.value || Validators.required);
+    });
+    this.ansForm = new FormGroup(group);
   }
 
 
@@ -107,13 +108,6 @@ export const DOMAIN = [
   {key: '3', value: 'Spiritual'},
 ];
 
-export const SUBDOMAIN = [
-  {key: '1', value: 'Health related'},
-  {key: '2', value: 'Mobility and Exercise'},
-  {key: '3', value: 'Smoke and drink'}
-];
-
-
 export const ANSTYPE = [
   {key: 'textbox', value: 'Text Input Question'},
   {key: 'dropdown', value: 'Drop Down Question'},
@@ -123,6 +117,6 @@ export const ANSTYPE = [
 
 export class Options {
   key: any;
-  extent: string;
+  extent: number;
   value: string;
 }

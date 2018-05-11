@@ -125,6 +125,7 @@ export class QuestionService {
         type: 'dropdown',
         ansOptions: [],
         order: 1,
+        domain: 'Physical'
       }),
       new DomQuestion({
         qid: 2,
@@ -133,6 +134,7 @@ export class QuestionService {
         type: 'dropdown',
         ansOptions: [],
         order: 2,
+        domain: 'Physical'
       }),
       new DomQuestion({
         qid: 3,
@@ -140,6 +142,7 @@ export class QuestionService {
         label: 'Do you have enough energy for everyday activities?',
         type: 'dropdown',
         order: 3,
+        domain: 'Physical'
       }),
       new DomQuestion({
         qid: 4,
@@ -150,14 +153,16 @@ export class QuestionService {
           {key: 'yes', value: 'Yes'},
           {key: 'no', value: 'No'},
         ],
-        order: 4
+        order: 4,
+        domain: 'Physical'
       }),
       new DomQuestion({
         qid: 5,
         key:'5',
         label: 'Are there times when you do not take your prescribed meds when you are supposed to?',
         type: 'dropdown',
-        order: 5
+        order: 5,
+        domain: 'Physical'
       }),
       new DomQuestion({
         qid: 6,
@@ -168,7 +173,8 @@ export class QuestionService {
           {key: 'yes', value: 'Yes'},
           {key: 'no', value: 'No'},
         ],
-        order: 6
+        order: 6,
+        domain: 'Physical'
       }),
       new DomQuestion({
         qid: 7,
@@ -179,7 +185,8 @@ export class QuestionService {
           {key: 'yes', value: 'Yes'},
           {key: 'no', value: 'No'},
         ],
-        order: 7
+        order: 7,
+        domain: 'Physical'
       }),
       new DomQuestion({
         qid: 8,
@@ -191,6 +198,7 @@ export class QuestionService {
           {key: 'no', value: 'no'},
         ],
         order: 8,
+        domain: 'Physical'
       }),
       new DomQuestion({
         qid: 9,
@@ -201,7 +209,8 @@ export class QuestionService {
           {key: 'yes', value: 'Yes'},
           {key: 'no', value: 'No'}
         ],
-        order: 9
+        order: 9,
+        domain: 'Physical'
       })
     ];
     return questions.sort((a, b) => a.order - b.order);

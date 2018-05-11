@@ -16,21 +16,6 @@ export class Domain {
   }
 }
 
-export class Subdomain {
-  subdid: number;
-  subdomain: string;
-  did: number;
-  constructor(options: {
-    subdid?: number,
-    subdomain?: string,
-    did?: number,
-  } = {}) {
-    this.subdid = options.subdid;
-    this.subdomain = options.subdomain;
-    this.did = options.did || -1;
-  }
-}
-
 export class Question {
   qid: number;
   key: string;
@@ -66,12 +51,10 @@ export class Question {
 
 export class DomQuestion extends Question {
   domain: string;
-  subdomain: string;
   weight: number;
   constructor(options: {} = {}) {
     super(options);
     this.domain = options['domain'] || '';
-    this.subdomain = options['subdomain'] || '';
     this.weight = options['weight'] || 0;
   }
 }

@@ -4,22 +4,19 @@ import { AdminDashboardComponent } from './admin-dashboard.component';
 import {ClarityModule} from '@clr/angular';
 import {HeaderModule} from '../../layout/header/header.module';
 import {RouterModule} from '@angular/router';
-import {DataSummaryModule} from '../data-summary/data-summary.module';
-import {InputDomainModule} from '../input-domain/input-domain.module';
-
 
 export const routes = [
   { path: '',
     component: AdminDashboardComponent,
     children: [
-       {path: '', redirectTo: 'input-question', patchMatch: 'full'},
-       {path: 'input-question', loadChildren: '../input-question/input-question.module#InputQuestionModule'},
-      {path: 'data-summry', loadChildren: '../data-summary/data-summary.module#DataSummaryModule'},
-      {path: 'input-domain', loadChildren: '../input-domain/input-domain.module#InputDomainModule'}
+      {path: '', redirectTo: 'ques-manage', patchMatch: 'full'},
+      {path: 'input-question', loadChildren: '../input-question/input-question.module#InputQuestionModule'},
+      {path: 'data-summary', loadChildren: '../data-summary/data-summary.module#DataSummaryModule'},
+      {path: 'input-domain', loadChildren: '../input-domain/input-domain.module#InputDomainModule'},
+      {path: 'ques-manage', loadChildren: '../ques-manage/ques-manage.module#QuesManageModule'}
     ]
   }
 ];
-
 
 @NgModule({
   imports: [
@@ -31,10 +28,12 @@ export const routes = [
   declarations: [AdminDashboardComponent],
   exports: [
     HeaderModule,
-    RouterModule,
     AdminDashboardComponent,
-    ClarityModule
+    ClarityModule,
+    RouterModule,
   ]
 
 })
 export class AdminDashboardModule { }
+
+
