@@ -21,8 +21,6 @@ export class InputQuestionComponent implements OnInit {
   Domain = null;
   AnsType = ANSTYPE;
 
-  questionType: string;
-  optionNum: number;
   options: Options[] = [];
   isQues: boolean = false;
   isText: boolean = false;
@@ -48,11 +46,11 @@ export class InputQuestionComponent implements OnInit {
       optnum: ['', [Validators.required]],
     });
 
+    this.ansForm = this.fb.group({});
     this.form.controls["quesType"].valueChanges.subscribe((value) => {
       this.getType(value);
     });
-
-    this.form.controls["optnum"].valueChanges.subscribe((value)=> {
+    this.form.controls["anstype"].valueChanges.subscribe((value)=> {
       this.getAnsType(value);
     });
     this.form.controls["optnum"].valueChanges.subscribe((value)=> {
@@ -80,20 +78,37 @@ export class InputQuestionComponent implements OnInit {
 
   getAnsNumber(optnum: number) {
     let id = 0;
+    this.options = [];
     while (optnum > 0 && id < optnum) {
-      let opt = {key: id, extent: id, value: ''};
+      let opt = {key: id, eid: 'Q' + id, extent: id, value: ''};
       this.options.push(opt);
       id++;
     }
 
     let group: any = {};
     this.options.forEach(option => {
-      group[option.extent] = new FormControl(option.extent || Validators.required);
-      group[option.key] = new FormControl(option.value || Validators.required);
+      group[option.eid] = ['', Validators.required]
+      group[option.key] = [option.value, Validators.required]
     });
-    this.ansForm = new FormGroup(group);
+    this.ansForm = this.fb.group(group);
+
+    for (let opt of this.options) {
+      this.ansForm.controls[opt.eid].valueChanges.subscribe(value => opt.extent = value);
+      this.ansForm.controls[opt.key].valueChanges.subscribe(value => opt.value = value);
+    }
+    //this.form.addControl("nested",this.ansForm);
   }
 
+  confirm() {
+    this.inputActive = false;
+    this.confirmActive = true;
+    console.log(this.ansForm.value);
+  }
+
+  back() {
+    this.inputActive = true;
+    this.confirmActive = false;
+  }
 
 }
 
@@ -116,7 +131,8 @@ export const ANSTYPE = [
 
 
 export class Options {
-  key: any;
+  key: number;
+  eid: string;
   extent: number;
   value: string;
 }

@@ -14,7 +14,7 @@
           Remember me
         </label>
       </div>
-      <button type="submit" class="btn btn-primary" (click)="login()">Log In</button>
+      <button type="submit" class="btn btn-primary" (click)="login();$event.preventDefault()">Log In</button>
     </div>
   </form>
 </div>

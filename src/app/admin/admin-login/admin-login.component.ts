@@ -17,8 +17,6 @@ export class AdminLoginComponent implements OnInit {
 
   login() {
     localStorage.setItem('curRole', 'admin');
-    this.router.navigateByUrl('/admin/dashboard');
-    // this.router.navigateByUrl('/adminDashboard');
-    // this.router.navigate(['./adminDashboard']);
+    this.router.navigateByUrl('adminDashboard');
   }
 }

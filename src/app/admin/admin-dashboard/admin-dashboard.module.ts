@@ -9,7 +9,7 @@ export const routes = [
   { path: '',
     component: AdminDashboardComponent,
     children: [
-      {path: '', redirectTo: 'ques-manage', patchMatch: 'full'},
+      {path: '', redirectTo: 'data-summary', patchMatch: 'full'},
       {path: 'input-question', loadChildren: '../input-question/input-question.module#InputQuestionModule'},
       {path: 'data-summary', loadChildren: '../data-summary/data-summary.module#DataSummaryModule'},
       {path: 'input-domain', loadChildren: '../input-domain/input-domain.module#InputDomainModule'},

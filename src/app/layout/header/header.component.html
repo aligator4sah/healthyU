@@ -6,14 +6,15 @@
     </a>
   </div>
   <div class="header-nav">
-    <a routerLink="/dashboard/dash" class="nav-link"><span class="nav-text">Dashboard</span></a>
     <div *ngIf="!isAdmin">
+      <a routerLink="/dashboard" class="nav-link"><span class="nav-text">Dashboard</span></a>
       <a routerLink="/dashboard/question" class="nav-link"><span class="nav-text">Questionnaire</span></a>
       <a routerLink="/dashboard/demographic" class="nav-link"><span class="nav-text">Demographic</span></a>
     </div>
     <div *ngIf="isAdmin">
-    <a routerLink="" class="nav-link"><span class="nav-text">Management</span></a>
-      <a routerLink="" class="nav-link"><span class="nav-text">Analysis</span></a>
+      <a routerLink="/adminDashboard" class="nav-link"><span class="nav-text">Dashboard</span></a>
+      <a routerLink="/adminDashboard/input-question" class="nav-link"><span class="nav-text">Management</span></a>
+      <a routerLink="/adminDashboard/ques-manage" class="nav-link"><span class="nav-text">List</span></a>
     </div>
   </div>
   <div class="header-actions">

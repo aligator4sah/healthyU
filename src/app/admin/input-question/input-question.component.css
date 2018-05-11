@@ -25,10 +25,45 @@
 
 
 .card-block {
+  height: 85%;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+
+.card-text {
   overflow: auto;
 }
 
 .card-footer {
   position: absolute;
   bottom: 10px;
+}
+
+.form {
+  width: 95%;
+  overflow: auto;
+}
+
+.form-block {
+  width: 95%;
+}
+
+.ansGroup {
+  width: 98%;
+  overflow: auto;
+}
+
+
+.question-info {
+  margin-left: 15px;
+}
+
+
+.ques-info {
+  padding-bottom: 10px;
+}
+
+p {
+  margin-top: 5px;
 }
