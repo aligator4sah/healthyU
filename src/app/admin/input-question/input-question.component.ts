@@ -18,7 +18,7 @@ export class InputQuestionComponent implements OnInit {
   question: DomQuestion;
 
   type = TYPE;
-  Domain = null;
+  Domain = DOMAIN;
   AnsType = ANSTYPE;
 
   options: Options[] = [];
