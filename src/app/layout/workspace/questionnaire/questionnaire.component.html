@@ -5,14 +5,14 @@
   <div class="card">
     <div class="card-title">
       <clr-icon shape="pencil" size="36"></clr-icon> &nbsp;
-      <span>Physical Domain Question</span>
+      <span>Questionnaire</span>
     </div>
     <div class="card-divider"></div>
     <div class="card-block">
       <div class="card-text">
         <clr-tabs>
           <clr-tab>
-            <button clrTabLink id="link1">Health Related</button>
+            <button clrTabLink id="link1">Physical Domain</button>
             <clr-tab-content id="content1" *clrIfActive>
               <form (ngSubmit)="onSubmit()" [formGroup]="form1">
                 <div *ngFor="let question of questionGroup1" class="form-row">
@@ -26,7 +26,7 @@
           </clr-tab>
 
           <clr-tab>
-            <button clrTabLink>Mobility and Exercise</button>
+            <button clrTabLink>Behavioral Domain</button>
             <clr-tab-content>
               <form (ngSubmit)="onSubmit()" [formGroup]="form2">
                 <div *ngFor="let question of questionGroup2" class="form-row">
@@ -40,7 +40,7 @@
           </clr-tab>
 
           <clr-tab>
-            <button clrTabLink>Drug and Alcohol</button>
+            <button clrTabLink>Spiritual Domain</button>
             <clr-tab-content>
               wfdefeferfe
             </clr-tab-content>
