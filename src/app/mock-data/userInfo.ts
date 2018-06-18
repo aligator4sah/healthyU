@@ -73,8 +73,27 @@ export const Gender = [
 ];
 
 
+/**TODO: change security question to at least 10 questions */
+
 export const SecurityQues = [
   {key: 'Q1', value: "What's your mother's middle name?"},
   {key: 'Q2', value: "What is your favorite animal?"},
   {key: 'Q3', value: "What is your favorite vocation place?"}
+];
+
+export const Race = [
+  {value:'Caucasian',viewValue:'Caucasian'},
+  {value:'African American',viewValue:'African American'},
+  {value:'Hispanic',viewValue:'Hispanic'},
+  {value:'Bi-Racial',viewValue:'Bi-Racial'},
+  {value:'Asian',viewValue:'Asian'},
+  {value:'White',viewValue:'White'},
+  {value:'Other',viewValue:'Other'}
+];
+
+export const Marital = [
+  {value:'Single',viewValue:'Single'},
+  {value:'Married',viewValue:'Married'},
+  {value:'Separated',viewValue:'Separated'},
+  {value:'Divorced',viewValue:'Divorced'}
 ];

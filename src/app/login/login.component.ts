@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {ClrWizard} from '@clr/angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Gender, SecurityQues, UserModel, UserType} from '../mock-data/userInfo';
+import {Gender, Marital, Race, SecurityQues, UserModel, UserType} from '../mock-data/userInfo';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
   registered: boolean = false;
   userType = UserType;
   gender = Gender;
+  races = Race;
+  maritals = Marital;
+
   secureQue = SecurityQues;
   time = [
     {id: 1, qid: 'Q1', aid: 'A1', question: '', answer: ''},
@@ -56,7 +59,8 @@ export class LoginComponent implements OnInit {
     });
     this.form2 = this.fb.group({
       phone: ['', []],
-      email: ['', []],
+      race: ['', Validators.required],
+      marital: ['', Validators.required],
     });
     this.form3 = this.fb.group({
       Q1: ['', [Validators.required]],

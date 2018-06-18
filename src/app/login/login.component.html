@@ -22,7 +22,7 @@
         </label>
       </div>
       <button type="submit" class="btn btn-primary" (click)="submit()">Log In</button>
-      <a routerLink="" class="signup" (click)="signUp()">Sign up for a User ID</a>
+      <a routerLink="" class="signup" (click)="signUp()">Sign up</a>
       <a routerLink="" class="signup" (click)="openForget()">Forget Password</a>
       <app-forget-psd [basic]="forget"></app-forget-psd>
       <div *ngIf="isValid">
@@ -43,7 +43,7 @@
 
   <!--<clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid">-->
   <clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid">
-    <ng-template clrPageTitle>Required Information</ng-template>
+    <ng-template clrPageTitle>Step 1</ng-template>
     <form [formGroup]="form1">
     <section class="form-block">
       <div class="form-group">
@@ -52,8 +52,8 @@
                aria-haspopup="true"
                role="tooltip"
                class="tooltip tooltip-validation tooltip-md">
-          <input type="text" id="empUserName" placeholder="Enter User name"
-                 name="username" formControlName="username">
+          <input type="text" id="empUserName" placeholder="Enter Email As Username"
+                 name="username" formControlName="username" required>
           <span class="tooltip-content"> User Name is Required. </span>
         </label>
       </div>
@@ -63,8 +63,8 @@
                aria-haspopup="true"
                role="tooltip"
                class="tooltip tooltip-validation tooltip-md">
-          <input type="text" id="empFirstName" placeholder="Enter first name"
-                 name="firstname" formControlName="firstname">
+          <input type="text" id="empFirstName" placeholder="Enter First Name"
+                 name="firstname" formControlName="firstname" required>
           <span class="tooltip-content"> First Name is Required. </span>
         </label>
       </div>
@@ -74,7 +74,7 @@
                aria-haspopup="true"
                role="tooltip"
                class="tooltip tooltip-validation tooltip-md">
-          <input type="text" id="empLastName" placeholder="Enter last name"
+          <input type="text" id="empLastName" placeholder="Enter Last Name"
                  name="lastname"
                  formControlName="lastname">
           <span class="tooltip-content">
@@ -91,7 +91,7 @@
           <input type="text" id="psd" placeholder="Enter Password"
                  name="psd"
                  type="password"
-                 formControlName="psd">
+                 formControlName="psd" required>
         </label>
       </div>
       <div class="form-group">
@@ -103,7 +103,7 @@
           <input type="text" id="repsd" placeholder="Reenter Password"
                  name="repsd"
                  type="password"
-                 formControlName="repsd">
+                 formControlName="repsd" required>
         </label>
       </div>
       <div class="form-group">
@@ -122,39 +122,59 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="empGender">Gender</label>
-        <div class="select">
-          <select id="empGender"
-                  name="employeeGender" formControlName="gender" required>
-            <option value="Default">Select User Gender...</option>
-            <option *ngFor="let ge of gender" [value]="ge.value">{{ge.value}}</option>
-          </select>
-        </div>
+      <label for="empGender">Gender</label>
+      <div class="select">
+        <select id="empGender"
+                name="employeeGender" formControlName="gender" required>
+          <option value="Default">Select User Gender...</option>
+          <option *ngFor="let ge of gender" [value]="ge.value">{{ge.value}}</option>
+        </select>
       </div>
+    </div>
       <br>
     </section>
     </form>
   </clr-wizard-page>
 
-  <clr-wizard-page [clrWizardPageNextDisabled]="!form2.valid">
+  <clr-wizard-page [clrWizardPageNextDisabled]="form1.invalid">
     <form [formGroup]="form2">
     <section class="form-block">
-    <ng-template clrPageTitle>Optional Information</ng-template>
+    <ng-template clrPageTitle>Step 2</ng-template>
     <div class="form-group">
       <label for="phone">Phone</label>
       <input id="phone" type="text" formControlName="phone" placeholder="Enter Phone Number">
     </div>
+
     <div class="form-group">
-      <label for="email">Email</label>
-      <input id="email" type="text" formControlName="email" placeholder="Enter Email">
+      <label for="empRace">Race</label>
+      <div class="select">
+        <select id="empRace"
+                name="race" formControlName="race" required>
+          <option value="Default">Select User Race...</option>
+          <option *ngFor="let race of races" [value]="race.value">{{race.viewValue}}</option>
+        </select>
+      </div>
     </div>
+
+      <div class="form-group">
+        <label for="empMarital">Marital Status</label>
+        <div class="select">
+          <select id="empMarital"
+                  name="marital" formControlName="marital" required>
+            <option value="Default">Select User Marital Status...</option>
+            <option *ngFor="let mar of maritals" [value]="mar.value">{{mar.viewValue}}</option>
+          </select>
+        </div>
+      </div>
+
+
     </section>
     </form>
   </clr-wizard-page>
 
   <!-- Security Questions-->
-  <clr-wizard-page [clrWizardPageNextDisabled]="!form3.valid">
-    <ng-template clrPageTitle>Security Information</ng-template>
+  <clr-wizard-page [clrWizardPageNextDisabled]="form2.invalid">
+    <ng-template clrPageTitle>Step 3</ng-template>
     <form [formGroup]="form3">
       <section class="form-block">
         <div *ngFor="let t of time">
@@ -185,7 +205,9 @@
       <li><label>Gender: </label><span class="confirm-info"> {{ form1.get('gender').value }}</span></li>
       <li><label>Date of birth: </label><span class="confirm-info"> {{ form1.get('dob').value | date:"MM/dd/yy"}}</span></li>
       <li><label>Phone: </label><span class="confirm-info"> {{ form2.get('phone').value }}</span></li>
-      <li><label>Email: </label><span class="confirm-info"> {{form2.get('email').value}}</span></li>
+      <li><label>Race: </label><span class="confirm-info"> {{ form2.get('race').value }}</span></li>
+      <li><label>Marital Status: </label><span class="confirm-info"> {{ form2.get('marital').value }}</span></li>
+
       <div *ngFor="let t of time">
         <li><label>Security Question {{t.id}}: </label><span class="confirm-info"> {{t.question}}</span></li>
         <li><label>Security Answer {{t.id}}: </label><span class="confirm-info"> {{t.answer}}</span></li>
