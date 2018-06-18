@@ -5,6 +5,7 @@ import {ClarityModule} from '@clr/angular';
 import {AdminCardModule} from '../admin-card/admin-card.module';
 import {ChartsModule} from 'ng2-charts';
 import {RouterModule} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -12,6 +13,8 @@ import {RouterModule} from '@angular/router';
     ClarityModule,
     AdminCardModule,
     ChartsModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {path: '', component: UserSummaryComponent}
     ])
@@ -22,6 +25,8 @@ import {RouterModule} from '@angular/router';
     ClarityModule,
     AdminCardModule,
     ChartsModule,
+    FormsModule,
+    ReactiveFormsModule,
     UserSummaryComponent,
     RouterModule
   ]
