@@ -6,7 +6,7 @@
       <div class="card">
         <div class="card-title">
           <clr-icon shape="add-text" size="36"></clr-icon> &nbsp;
-          <span>Visitors Timeline</span>
+          <span> Visitors Timeline | Year: {{today | date:'yyyy'}}</span>
         </div>
         <div class="card-divider"></div>
         <div class="card-block">
@@ -26,13 +26,15 @@
           <div class="col-md-12" style="margin-bottom: 10px; margin-top: 10px;">
             <table class="table table-responsive table-condensed">
               <tr>
+                <th>User Type</th>
                 <th *ngFor="let label of lineChartLabels">{{label}}</th>
               </tr>
               <tr *ngFor="let d of lineChartData">
+                <td>{{d.label}}</td>
                 <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
               </tr>
             </table>
-            <button class="btn btn-outline" (click)="randomize()">CLICK</button>
+            <button class="btn btn-outline" routerLink="/adminDashboard/user-summary">User Summary</button>
           </div>
         </div>
       </div>

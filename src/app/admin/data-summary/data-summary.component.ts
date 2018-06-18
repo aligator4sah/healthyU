@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataSummaryComponent implements OnInit {
 
+  today = Date.now();
+
   public lineChartData:Array<any> = [
     {data: [65, 59, 80, 81, 56, 55, 40], label: 'Students'},
     {data: [28, 48, 40, 19, 86, 27, 90], label: 'Faculty'},
@@ -46,3 +48,4 @@ export class DataSummaryComponent implements OnInit {
   }
 
 }
+
