@@ -105,3 +105,14 @@ export const Marital = [
   {value:'Separated',viewValue:'Separated'},
   {value:'Divorced',viewValue:'Divorced'}
 ];
+
+
+export const DOMAINS = [
+  {key: 'Physical', value: 'Physical'},
+  {key: 'Emotional', value: 'Emotional'},
+  {key: 'Social', value: 'Social'},
+  {key: 'Financial', value: 'Financial'},
+  {key: 'Spiritual', value: 'Spiritual'},
+  {key: 'Occupational', value: 'Occupational'},
+  {key: 'Intellectual', value: 'Intellectual'}
+];
