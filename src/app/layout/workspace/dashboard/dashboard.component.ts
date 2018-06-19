@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {DOMAINS} from '../../../mock-data/userInfo';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,24 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  public barChartOptions:any = {
-    scaleShowVerticalLines: false,
-    responsive: true
-  };
-  public barChartLabels:string[] = ['Demographic', 'Physical', 'Behavioral', 'Relational', 'Spiritual', 'Socio-economic', 'Overall'];
-  public barChartType:string = 'bar';
-  public barChartLegend:boolean = true;
 
-  public barChartData:any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Your Score'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Average Score'}
+  domains = DOMAINS;
+  domainForm: FormGroup;
+  selectedDomain: string = 'Overall';
+
+  // lineChart
+  public lineChartData:Array<any> = [
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Your score'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Average'}
   ];
-
-  public polarAreaChartLabels:string[] = ['Demographic', 'Physical', 'Behavioral', 'Relational', 'Spiritual'];
-  public polarAreaChartData:number[] = [300, 500, 100, 40, 120];
-  public polarAreaLegend:boolean = false;
-
-  public polarAreaChartType:string = 'polarArea';
+  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartType:string = 'line';
 
   // events
   public chartClicked(e:any):void {
@@ -34,9 +30,16 @@ export class DashboardComponent implements OnInit {
     console.log(e);
   }
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit() {
+    this.domainForm = this.fb.group({
+      domain: ['Overall']
+    });
+    this.domainForm.controls['domain'].valueChanges.subscribe(value => {
+      this.selectedDomain = value});
   }
 
 }

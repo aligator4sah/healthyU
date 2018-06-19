@@ -15,23 +15,22 @@
 
 .card {
   width: 1130px;
+  height: 600px;
 }
 
 .card-block {
-  height: 90%;
+  height: 80%;
+  overflow: auto;
+  margin-bottom: 1px;
 }
 
 .card .card-text {
   margin-bottom: 10px;
 }
 
-.card .bottom-card {
-  width: 1130px;
-  height: 200px;
+
+.radio {
+  padding-bottom: 10px;
 }
 
-.bottom {
-  width: 100%;
-  text-align: center;
-  margin-right: 10px;
-}
+

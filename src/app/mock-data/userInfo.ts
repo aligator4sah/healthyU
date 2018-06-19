@@ -120,6 +120,5 @@ export const DOMAINS = [
 
 export const SESSIONDATA = [
   {id: 1, date: '10/02/2018'},
-  {id: 2, date: '28/04/2018'},
-  {id: 3, date: '02/05/2018'}
+  {id: 2, date: '28/04/2018'}
 ];

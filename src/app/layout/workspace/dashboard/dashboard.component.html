@@ -12,106 +12,49 @@
           <div class="card-text">
            <!-- general graph place-->
             <div class="row">
-              <!--left side bar chart -->
-              <div class="col-md-7">
-                <h4>General Well-being Score</h4>
-                <div style="display: block; width: 650px">
-                  <canvas baseChart
-                          [datasets]="barChartData"
-                          [labels]="barChartLabels"
-                          [options]="barChartOptions"
-                          [legend]="barChartLegend"
-                          [chartType]="barChartType"
-                          (chartHover)="chartHovered($event)"
-                          (chartClick)="chartClicked($event)"></canvas>
-                </div>
+              <!--time line chart -->
+              <div class="col-md-7" style="padding-left: 20px; padding-right: 25px">
+                <h4 style="padding-bottom: 15px">Score change over time</h4>
+                <canvas baseChart style="margin-top: 5px; height: 400px"
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [chartType]="lineChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
               </div>
-              <!--right side radar chart -->
+
+              <!--score list-->
               <div class="col-md-4">
-                <h4>Well-being Score Composition</h4>
-                <br>
-                <div style="display: block; width: 450px; height: 250px">
-                  <canvas baseChart
-                          [data]="polarAreaChartData"
-                          [labels]="polarAreaChartLabels"
-                          [legend]="polarAreaLegend"
-                          [chartType]="polarAreaChartType"
-                          (chartHover)="chartHovered($event)"
-                          (chartClick)="chartClicked($event)"></canvas>
-                </div>
+                  <div class="form-group">
+                    <form [formGroup]="domainForm">
+                      <label style="font-size: 18px; color: darkblue; padding-bottom: 25px; margin-top: 20px">Select Domains to check changes</label>
+                    <div class="radio">
+                      <input type="radio" name="domain" id="Overall" value="Overall" formControlName="domain">
+                      <label for="Overall" style="font-size: 15px">Overall</label>
+                    </div>
+                    <div class="radio" *ngFor="let item of domains">
+                      <input type="radio" name="domain" [id]="item.key" [value]="item.value" formControlName="domain">
+                      <label [for]="item.key">{{item.value}} </label>
+                    </div>
+                    </form>
+                  </div>
               </div>
 
             </div>
+
           </div>
         </div>
         <div class="card-footer">
           <!--Session graph (if exist) -->
           <a class="label label-purple clickable"> Session 1
-            <span class="badge">1</span>
+            <span class="badge">4</span>
           </a>
           <a class="label label-blue clickable"> Session 2
-            <span class="badge">2</span>
-          </a>
-          <a class="label label-orange clickable"> Total
             <span class="badge">3</span>
           </a>
-        </div>
-      </div>
-      <!-- Select domain to start new session-->
-      <div class="card bottom-card">
-        <div class="card-block">
-          <div class="card-text">
-            <div class="bottom">
-            <div class="row">
-              <div class="col-lg">
-                <span>
-                  <a><clr-icon shape="angle-double" style="transform: rotate(270deg);" size="26"></clr-icon> &nbsp;</a>
-                </span>
-              </div>
-              <div class="col-lg">
-                <span>
-                  <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-right">
-                      <clr-icon shape="clipboard" size="26" class="is-solid is-highlight"></clr-icon>
-                      <span class="tooltip-content">Demographic</span>
-                  </a>
-                </span>
-              </div>
-              <div class="col-lg">
-                <span>
-                  <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-right">
-                      <clr-icon shape="accessibility-2" size="26" class="is-solid"></clr-icon>
-                      <span class="tooltip-content">Physical</span>
-                  </a>
-                </span>
-              </div>
-              <div class="col-lg">
-                <span>
-                  <span>
-                  <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-right">
-                      <clr-icon shape="chat-bubble" size="26" class="is-solid is-success"></clr-icon>
-                      <span class="tooltip-content">Relational</span>
-                  </a>
-                </span>
-                </span>
-              </div>
-              <div class="col-lg">
-                <span>
-                  <span>
-                  <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm tooltip-right">
-                      <clr-icon shape="heart" size="26" class="is-solid is-warning"></clr-icon>
-                      <span class="tooltip-content">Physical</span>
-                  </a>
-                </span>
-                </span>
-              </div>
-              <div class="col-lg">
-                <span>
-                  <a><clr-icon shape="angle-double" style="transform: rotate(90deg);" size="26"></clr-icon> &nbsp;</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          </div>
+          <a class="label label-orange clickable"> Total
+            <span class="badge">7</span>
+          </a>
         </div>
       </div>
 
