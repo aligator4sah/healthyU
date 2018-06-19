@@ -9,7 +9,8 @@ export const routes = [
       {path: 'question', loadChildren: '../workspace/questionnaire/questionnaire.module#QuestionnaireModule'},
       {path: 'demographic', loadChildren: '../workspace/demographic/demographic.module#DemographicModule'},
       {path: 'dash', loadChildren: '../workspace/dashboard/dashboard.module#DashboardModule'},
-      {path: 'session-list', loadChildren: '../workspace/session-list/session-list.module#SessionListModule'}
+      {path: 'session-list', loadChildren: '../workspace/session-list/session-list.module#SessionListModule'},
+      {path: 'score-graph', loadChildren: '../workspace/score-graph/score-graph.module#ScoreGraphModule'}
     ]
   }
 ];

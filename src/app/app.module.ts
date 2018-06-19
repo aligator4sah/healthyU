@@ -9,6 +9,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ClarityIconsApi} from '@clr/icons/clr-icons-api';
 import {QuestionService} from './service/question.service';
 import {QuestionControlService} from './service/question-control.service';
+import {StateService} from './service/state.service';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import {QuestionControlService} from './service/question-control.service';
     ClarityModule,
     AppRoutingModule
   ],
-  providers: [QuestionService, QuestionControlService],
+  providers: [QuestionService, QuestionControlService, StateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
