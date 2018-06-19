@@ -76,9 +76,17 @@ export const Gender = [
 /**TODO: change security question to at least 10 questions */
 
 export const SecurityQues = [
-  {key: 'Q1', value: "What's your mother's middle name?"},
-  {key: 'Q2', value: "What is your favorite animal?"},
-  {key: 'Q3', value: "What is your favorite vocation place?"}
+  {key: 'Q1', value: "What is your favorite book?"},
+  {key: 'Q2', value: "What is the name of the road you grew up on?"},
+  {key: 'Q3', value: "What is your mother’s maiden name?"},
+  {key: 'Q4', value: "What was the name of your first/current/favorite pet?"},
+  {key: 'Q5', value: "What was the first company that you worked for?"},
+  {key: 'Q6', value: "Where did you meet your spouse?"},
+  {key: 'Q7', value: "Where did you go to high school/college?"},
+  {key: 'Q8', value: "What is your favorite food?"},
+  {key: 'Q9', value: "What city were you born in?"},
+  {key: 'Q10', value: "Where is your favorite place to vacation?"}
+
 ];
 
 export const Race = [

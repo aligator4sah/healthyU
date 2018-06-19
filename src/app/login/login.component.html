@@ -42,7 +42,7 @@
   <clr-wizard-button [type]="'finish'">Finish</clr-wizard-button>
 
   <!--<clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid">-->
-  <clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid">
+  <clr-wizard-page [clrWizardPageNextDisabled]="form1.invalid">
     <ng-template clrPageTitle>Step 1</ng-template>
     <form [formGroup]="form1">
     <section class="form-block">
@@ -136,7 +136,7 @@
     </form>
   </clr-wizard-page>
 
-  <clr-wizard-page [clrWizardPageNextDisabled]="form1.invalid">
+  <clr-wizard-page [clrWizardPageNextDisabled]="form2.invalid">
     <form [formGroup]="form2">
     <section class="form-block">
     <ng-template clrPageTitle>Step 2</ng-template>
@@ -173,7 +173,7 @@
   </clr-wizard-page>
 
   <!-- Security Questions-->
-  <clr-wizard-page [clrWizardPageNextDisabled]="form2.invalid">
+  <clr-wizard-page [clrWizardPageNextDisabled]="form3.invalid">
     <ng-template clrPageTitle>Step 3</ng-template>
     <form [formGroup]="form3">
       <section class="form-block">
@@ -195,7 +195,7 @@
       </section>
     </form>
   </clr-wizard-page>
-  <clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid || !form2.valid">
+  <clr-wizard-page [clrWizardPageNextDisabled]="form1.invalid || form2.invalid || form3.invalid">
     <ng-template clrPageTitle>Confirmation</ng-template>
     <ul class="list">
       <li><label>User Name: </label><span class="confirm-info"> {{ form1.get('username').value }}</span></li>
