@@ -58,16 +58,16 @@
         </label>
       </div>
       <div class="form-group">
-        <label for="empFirstName">First name</label>
-        <label for="empFirstName"
-               aria-haspopup="true"
-               role="tooltip"
-               class="tooltip tooltip-validation tooltip-md">
-          <input type="text" id="empFirstName" placeholder="Enter First Name"
-                 name="firstname" formControlName="firstname" required>
-          <span class="tooltip-content"> First Name is Required. </span>
-        </label>
-      </div>
+      <label for="empFirstName">First name</label>
+      <label for="empFirstName"
+             aria-haspopup="true"
+             role="tooltip"
+             class="tooltip tooltip-validation tooltip-md">
+        <input type="text" id="empFirstName" placeholder="Enter First Name"
+               name="firstname" formControlName="firstname" required>
+        <span class="tooltip-content"> First Name is Required. </span>
+      </label>
+    </div>
       <div class="form-group">
         <label for="empLastName">Last name</label>
         <label for="empLastName"
@@ -88,7 +88,7 @@
                aria-haspopup="true"
                role="tooltip"
                class="tooltip tooltip-validation tooltip-md">
-          <input type="text" id="psd" placeholder="Enter Password"
+          <input id="psd" placeholder="Enter Password"
                  name="psd"
                  type="password"
                  formControlName="psd" required>
@@ -100,7 +100,7 @@
                aria-haspopup="true"
                role="tooltip"
                class="tooltip tooltip-validation tooltip-md">
-          <input type="text" id="repsd" placeholder="Reenter Password"
+          <input id="repsd" placeholder="Reenter Password"
                  name="repsd"
                  type="password"
                  formControlName="repsd" required>
@@ -156,7 +156,7 @@
       </div>
     </div>
 
-      <div class="form-group">
+           <div class="form-group">
         <label for="empMarital">Marital Status</label>
         <div class="select">
           <select id="empMarital"

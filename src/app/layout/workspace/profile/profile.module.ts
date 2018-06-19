@@ -4,6 +4,7 @@ import { ProfileComponent } from './profile.component';
 import {ClarityModule} from '@clr/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import {CompleteCardModule} from '../complete-card/complete-card.module';
 
 @NgModule({
   imports: [
@@ -11,6 +12,7 @@ import {RouterModule} from '@angular/router';
     ClarityModule,
     FormsModule,
     ReactiveFormsModule,
+    CompleteCardModule,
     RouterModule.forChild([
       {path: '', component: ProfileComponent}
     ])
@@ -21,6 +23,7 @@ import {RouterModule} from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    CompleteCardModule,
     ProfileComponent
   ]
 })

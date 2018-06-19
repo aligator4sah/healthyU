@@ -122,3 +122,23 @@ export const SESSIONDATA = [
   {id: 1, date: '10/02/2018'},
   {id: 2, date: '28/04/2018'}
 ];
+
+
+export const USER1 = {
+  username: 'user1@outlook.com',
+  firstname: 'John',
+  lastname: 'Smith',
+  gender: 'Male',
+  dob: '12/02/1993',
+  type: 'Student',
+  phone: '412-232-1233',
+  race: 'African American',
+  marital: 'Single',
+  password: 'abcd1234',
+  Q1: '',
+  Q2: '',
+  Q3: '',
+  A1: '',
+  A2: '',
+  A3: '',
+};
