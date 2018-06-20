@@ -133,17 +133,35 @@
                     </div>
                   </section>
                 </form>
-
-                <button class="btn btn-primary">Confirm Change</button>
+                <button class="btn btn-primary" (click)="submitProfile()">Confirm Change</button>
                 <button class="btn btn-success" (click)="goBack()">Back</button>
               </clr-tab-content>
             </clr-tab>
 
-
             <clr-tab>
               <button clrTabLink>Security Question</button>
               <clr-tab-content *clrIfActive>
-                ...
+                <form [formGroup]="securityForm">
+                  <section class="form-block">
+                    <div *ngFor="let t of time">
+                      <div class="form-group">
+                        <label>{{t.id}} .Security Question</label>
+                        <div class="select">
+                          <select name="secq1"
+                                   [formControlName]="t.qid" required>
+                            <option *ngFor="let ques of secureQue" [value]="ques.value">{{ques.value}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>&nbsp; &nbsp; Security Answer</label>
+                        <input type="text" [formControlName]="t.aid" placeholder="Enter Answer" size="38">
+                      </div>
+                    </div>
+                  </section>
+                </form>
+                <button class="btn btn-primary" (click)="submitSecurity()">Confirm Change</button>
+                <button class="btn btn-success" (click)="goBack()">Back</button>
               </clr-tab-content>
             </clr-tab>
           </clr-tabs>

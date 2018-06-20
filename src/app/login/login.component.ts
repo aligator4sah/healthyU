@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    if (this.role !== "undefined") {
+    if (this.role !== undefined) {
       localStorage.setItem("curRole", this.role);
     }
     this.router.navigateByUrl("/dashboard");
@@ -81,7 +81,6 @@ export class LoginComponent implements OnInit {
 
   signUp() {
     this.lgOpen = true;
-
   }
 
   openForget() {

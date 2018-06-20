@@ -39,7 +39,20 @@ export class DashboardComponent implements OnInit {
       domain: ['Overall']
     });
     this.domainForm.controls['domain'].valueChanges.subscribe(value => {
-      this.selectedDomain = value});
+      this.selectedDomain = value;
+      this.randomize();
+    });
+  }
+
+  randomize() {
+    let _lineChartData:Array<any> = new Array(this.lineChartData.length);
+    for (let i = 0; i < this.lineChartData.length; i++) {
+      _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
+      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
+        _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
+      }
+    }
+    this.lineChartData = _lineChartData;
   }
 
 }
