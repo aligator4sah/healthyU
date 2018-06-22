@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
       A2: ['', [Validators.required]],
       A3: ['', [Validators.required]],
     });
+    localStorage.clear();
   }
 
   submit() {

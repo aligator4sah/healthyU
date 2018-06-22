@@ -13,6 +13,7 @@ export class AdminLoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    localStorage.clear();
   }
 
   login() {
