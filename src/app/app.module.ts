@@ -10,6 +10,8 @@ import {ClarityIconsApi} from '@clr/icons/clr-icons-api';
 import {QuestionService} from './service/question.service';
 import {QuestionControlService} from './service/question-control.service';
 import {StateService} from './service/state.service';
+import {HttpService} from './service/http.service';
+import {UserService} from './service/user.service';
 
 
 @NgModule({
@@ -22,7 +24,13 @@ import {StateService} from './service/state.service';
     ClarityModule,
     AppRoutingModule
   ],
-  providers: [QuestionService, QuestionControlService, StateService],
+  providers: [
+    QuestionService,
+    QuestionControlService,
+    StateService,
+    HttpService,
+    UserService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
