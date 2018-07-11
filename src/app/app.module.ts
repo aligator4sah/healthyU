@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import {ClarityModule} from '@clr/angular';
 import {AppRoutingModule} from './app-routing.module';
@@ -12,6 +11,9 @@ import {QuestionControlService} from './service/question-control.service';
 import {StateService} from './service/state.service';
 import {HttpService} from './service/http.service';
 import {UserService} from './service/user.service';
+import {MessageService} from './service/message.service';
+import {HttpErrorHandler} from './service/http-error-handler.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -22,13 +24,17 @@ import {UserService} from './service/user.service';
     BrowserAnimationsModule,
     BrowserModule,
     ClarityModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [
     QuestionService,
     QuestionControlService,
     StateService,
     HttpService,
+    UserService,
+    MessageService,
+    HttpErrorHandler,
     UserService,
   ],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {ClrWizard} from '@clr/angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Gender, Marital, Race, SecurityQues, UserModel, UserType} from '../mock-data/userInfo';
+import {UserService} from '../service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
+    private userService: UserService,
     ) { }
 
   ngOnInit() {
@@ -74,10 +76,28 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    if (this.role !== undefined) {
-      localStorage.setItem("curRole", this.role);
-    }
-    this.router.navigateByUrl("/dashboard");
+    const newUser = new UserModel({
+      userName: this.form1.controls['username'].value,
+      email: this.form1.controls['username'].value,
+      firstName: this.form1.controls['firstname'].value,
+      lastName: this.form1.controls['lastname'].value,
+      password: this.form1.controls['psd'].value,
+      userType: this.form1.controls['role'].value,
+      gender: this.form1.controls['gender'].value,
+      birthDate: this.form1.controls['dob'].value,
+      phone: this.form2.controls['phone'].value,
+      race: this.form2.controls['race'].value,
+      maritial: this.form2.controls['marital'].value,
+      security: this.form3.value,
+    });
+    this.userService.addUser(newUser).subscribe(value => {
+      console.log(value);
+      if (this.role !== undefined) {
+        localStorage.setItem("curRole", this.role);
+      }
+      this.router.navigateByUrl("/dashboard");
+    });
+
   }
 
   signUp() {

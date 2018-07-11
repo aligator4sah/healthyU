@@ -39,7 +39,7 @@
   <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
   <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
   <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
-  <clr-wizard-button [type]="'finish'">Finish</clr-wizard-button>
+  <clr-wizard-button [type]="'finish'" (click)="submit()">Finish</clr-wizard-button>
 
   <!--<clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid">-->
   <clr-wizard-page [clrWizardPageNextDisabled]="form1.invalid">
@@ -166,8 +166,6 @@
           </select>
         </div>
       </div>
-
-
     </section>
     </form>
   </clr-wizard-page>

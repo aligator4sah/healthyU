@@ -1,46 +1,45 @@
 /** User info class defination */
 
 export class UserModel {
+  userName: string;
   firstName: string;
   lastName: string;
-  type: string;
+  userType: string;
   password: string;
-  username: string;
-  dob: string;
+  birthDate: string;
   gender: string;
   phone: string;
   email: string;
-  q1: any;
-  q2: any;
-  q3: any;
+  race: string;
+  maritial: string;
+  security: any;
 
   constructor(options: {
-    firstName?: string,
-    lastName?: string,
-    type?: string,
-    password?: string,
-    dob?: string;
-    username?: string,
-    gender?: string,
-    phone?: string,
-    email?: string,
-    q1?: any,
-    q2?: any,
-    q3?: any,
-
+    firstName?: string;
+    lastName?: string;
+    userType?: string;
+    password?: string;
+    birthDate?: string;
+    userName?: string;
+    gender?: string;
+    phone?: string;
+    email?: string;
+    race?: string;
+    maritial?: string;
+    security?: any;
   } = {}) {
     this.firstName = options.firstName || '';
     this.lastName = options.lastName || '';
-    this.type = options.type || '';
-    this.username = options.username || '';
+    this.userType = options.userType || '';
+    this.userName = options.userName || '';
     this.password = options.password || '';
     this.gender = options.gender || '';
     this.phone = options.phone || '';
     this.email = options.email || '';
-    this.dob = options.dob || '';
-    this.q1 = options.q1 || {};
-    this.q2 = options.q2 || {};
-    this.q3 = options.q3 || {};
+    this.birthDate = options.birthDate || '';
+    this.race = options.race || '';
+    this.maritial = options.maritial || '';
+    this.security = options.security || {};
   }
 }
 
