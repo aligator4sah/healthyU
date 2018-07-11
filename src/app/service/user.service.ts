@@ -24,9 +24,17 @@ export class UserService {
   }
 
   addUser(user: UserModel): Observable<any> {
-    return this.http.post<any>(api_url + '/User', user, httpOptions).pipe(
-      catchError(this.handleError('addUser', user))
-    );
+    return this.http.post<any>(api_url + '/User', user, httpOptions)
+      .pipe(
+        catchError(this.handleError('addUser', user))
+      );
+  }
+
+  updateUser(id: number, user: any): Observable<any> {
+    return this.http.patch<any>(api_url + '/User/' + id, user, httpOptions)
+      .pipe(
+        catchError(this.handleError('updateuser', user))
+      );
   }
 
   getAllUsers(): Observable<any[]> {

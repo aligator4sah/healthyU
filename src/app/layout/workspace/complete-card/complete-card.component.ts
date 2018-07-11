@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompleteCardComponent implements OnInit {
 
+  curUser = JSON.parse(localStorage.getItem('curUser'));
+
   constructor() { }
 
   ngOnInit() {

@@ -47,7 +47,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      loginRole: ['', [Validators.required]]
+      loginRole: ['', [Validators.required]],
+      loginName: ['', Validators.required],
+      loginPsd: ['', Validators.required]
     });
     this.form1 = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
@@ -76,6 +78,24 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
+    const curUser = {
+      id: 1,
+      username: this.loginForm.controls['loginName'].value,
+      role: this.loginForm.controls['loginRole'].value
+    };
+    localStorage.setItem("curUser", JSON.stringify(curUser));
+    this.router.navigateByUrl("/dashboard");
+  }
+
+  signUp() {
+    this.lgOpen = true;
+  }
+
+  openForget() {
+    this.forget = true;
+  }
+
+  register() {
     const newUser = new UserModel({
       userName: this.form1.controls['username'].value,
       email: this.form1.controls['username'].value,
@@ -97,18 +117,6 @@ export class LoginComponent implements OnInit {
       }
       this.router.navigateByUrl("/dashboard");
     });
-
-  }
-
-  signUp() {
-    this.lgOpen = true;
-  }
-
-  openForget() {
-    this.forget = true;
-  }
-
-  register() {
     this.registered = true;
   }
 

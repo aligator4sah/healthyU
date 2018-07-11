@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Gender, Marital, Race, SecurityQues, USER1, UserType} from '../../../mock-data/userInfo';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../../service/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class ProfileComponent implements OnInit {
 
   user = USER1;
+  userId = JSON.parse(localStorage.getItem('curUser')).id;
 
+  user1: any;
   profileForm: FormGroup;
   securityForm: FormGroup;
   changePassword: boolean = false;
@@ -28,30 +31,38 @@ export class ProfileComponent implements OnInit {
 
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
-    this.profileForm = this.fb.group({
-      username: [this.user.username],
-      firstname: [this.user.firstname],
-      lastname: [this.user.lastname],
-      dob: [this.user.dob],
-      role: [this.user.type],
-      gender: [this.user.gender],
-      phone: [this.user.phone],
-      marital: [this.user.marital],
-      psd: [this.user.password],
-      repsd: [this.user.password],
-    });
-    this.securityForm = this.fb.group({
-      Q1: [this.user.Q1],
-      Q2: [this.user.Q2],
-      Q3: [this.user.Q3],
-      A1: [this.user.A1],
-      A2: [this.user.A2],
-      A3: [this.user.A3],
-    });
+    this.getUserById();
+  }
+
+  getUserById() {
+    this.userService.getUserById(this.userId).subscribe(value => {
+      this.user1 = value;
+      this.profileForm = this.fb.group({
+        username: [this.user1.userName],
+        firstname: [this.user1.firstName],
+        lastname: [this.user1.lastName],
+        dob: [this.user1.birthDate],
+        role: [this.user1.userType],
+        gender: [this.user1.gender],
+        phone: [this.user1.phone],
+        marital: [this.user1.maritial],
+        psd: [this.user1.password],
+        repsd: [this.user1.password],
+      });
+      this.securityForm = this.fb.group({
+        Q1: [this.user1.security.Q1],
+        Q2: [this.user1.security.Q2],
+        Q3: [this.user1.security.Q3],
+        A1: [this.user1.security.A1],
+        A2: [this.user1.security.A2],
+        A3: [this.user1.security.A3],
+      });
+    })
   }
 
   goBack() {
@@ -59,10 +70,15 @@ export class ProfileComponent implements OnInit {
   }
 
   submitProfile() {
-    console.log(this.profileForm.value);
+    this.userService.updateUser(this.userId, this.profileForm.value).subscribe(value => {
+      // console.log(value);
+    });
   }
 
   submitSecurity() {
+    this.userService.updateUser(this.userId, {security: this.securityForm.value}).subscribe(value => {
+      console.log(value);
+    });
     console.log(this.securityForm.value);
   }
 

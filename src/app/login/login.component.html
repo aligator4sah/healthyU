@@ -13,8 +13,8 @@
           <option>Faculty</option>
         </select>
       </div>
-      <input class="username" type="text" id="login_username" placeholder="Username">
-      <input class="password" type="password" id="login_password" placeholder="Password">
+      <input class="username" type="text" id="login_username" placeholder="Username" formControlName="loginName">
+      <input class="password" type="password" id="login_password" placeholder="Password" formControlName="loginPsd">
       <div class="checkbox">
         <input type="checkbox" id="rememberme">
         <label for="rememberme">
@@ -39,7 +39,7 @@
   <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
   <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
   <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
-  <clr-wizard-button [type]="'finish'" (click)="submit()">Finish</clr-wizard-button>
+  <clr-wizard-button [type]="'finish'" (click)="register()">Finish</clr-wizard-button>
 
   <!--<clr-wizard-page [clrWizardPageNextDisabled]="!form1.valid">-->
   <clr-wizard-page [clrWizardPageNextDisabled]="form1.invalid">
