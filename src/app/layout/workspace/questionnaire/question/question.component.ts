@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Question} from '../../../../mock-data/Question';
+import {Question, Questionnaire} from '../../../../mock-data/Question';
 import {FormGroup} from '@angular/forms';
 
 @Component({
@@ -9,14 +9,14 @@ import {FormGroup} from '@angular/forms';
 })
 export class QuestionComponent implements OnInit {
 
-  @Input() question: Question;
+  @Input() question: Questionnaire;
   @Input() form: FormGroup;
+
 
   constructor() { }
 
   ngOnInit() {
-  }
 
-  get isValid() { return this.form.controls[this.question.key].valid; }
+  }
 
 }

@@ -17,7 +17,7 @@ export class Domain {
 }
 
 export class Questionnaire {
-  qid: number;
+  id: number;
   key: string;
   label: string;
   hint: string;
@@ -28,7 +28,7 @@ export class Questionnaire {
   domain: string;
   weight: number;
   constructor(options: {
-    qid?: number;
+    id?: number;
     key?: string;
     label?: string;
     hint?: string;
@@ -39,13 +39,13 @@ export class Questionnaire {
     domain?: string;
     weight?: number;
   } = {}){
-    this.qid = options.qid;
+    this.id = options.id;
     this.key = options.key;
     this.label = options.label;
     this.hint = options.hint || '';
     this.type = options.type;
     this.ansOptions = options.ansOptions || {};
-    this.order = options.order || options.qid;
+    this.order = options.order || options.id;
     this.required = options.required || false;
     this.domain = options.domain || '';
     this.weight = options.weight || 1;
@@ -92,6 +92,30 @@ export class DomQuestion extends Question {
     super(options);
     this.domain = options['domain'] || '';
     this.weight = options['weight'] || 0;
+  }
+}
+
+export class AnswerItem {
+  id: number;
+  questionId: number;
+  answer: any;
+  domain: string;
+  weight: number;
+  sessionId: number;
+  constructor(options: {
+    id?: number;
+    questionId?: number;
+    answer?: any;
+    domain?: string;
+    weight?: number;
+    sessionId?: number;
+  } = {}) {
+    this.id = options.id;
+    this.questionId = options.questionId;
+    this.answer = options.answer || {};
+    this.domain = options.domain;
+    this.weight = options.weight;
+    this.sessionId = options.sessionId || -1;
   }
 }
 

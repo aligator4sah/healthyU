@@ -12,45 +12,36 @@
       <div class="card-text">
         <clr-tabs>
           <clr-tab>
-            <button clrTabLink id="link1">Physical Domain</button>
-            <clr-tab-content id="content1" *clrIfActive>
-              <form (ngSubmit)="onSubmit()" [formGroup]="form1">
-                <div *ngFor="let question of questionGroup1" class="form-row">
-                  <app-question [question]="question" [form]="form1"></app-question>
-                </div>
-              </form>
-              <div *ngIf="payLoad" class="form-row">
-                <strong>Saved the following values</strong><br>{{payLoad}}
+            <button clrTabLink>Questionnaire</button>
+            <clr-tab-content *clrIfActive>
+              <div class="start-left">
+                <img src="../../../../assets/questionnaire.png" class="picture">
+              </div>
+              <div class="start-right">
+                <h3>This is a new session for questionnaire.</h3>
+                <h6>Please choose a domain to start answer questions</h6>
               </div>
             </clr-tab-content>
           </clr-tab>
 
-          <clr-tab>
-            <button clrTabLink>Behavioral Domain</button>
+          <clr-tab *ngFor="let dom of domains">
+            <button clrTabLink (click)="getQuestionsByDomain(dom.id)">{{dom.domain}}</button>
             <clr-tab-content>
-              <form (ngSubmit)="onSubmit()" [formGroup]="form2">
-                <div *ngFor="let question of questionGroup2" class="form-row">
-                  <app-question [question]="question" [form]="form2"></app-question>
-                </div>
-              </form>
-              <div *ngIf="payLoad" class="form-row">
-                <strong>Saved the following values</strong><br>{{payLoad}}
+              <div *ngIf="form" style="padding-top: 10px; padding-left: 10px">
+                <form (ngSubmit)="onSubmit()" [formGroup]="form">
+                  <div *ngFor="let question of questions" class="form-row">
+                    <app-question [question]="question" [form]="form"></app-question>
+                  </div>
+                </form>
               </div>
-            </clr-tab-content>
-          </clr-tab>
-
-          <clr-tab>
-            <button clrTabLink>Spiritual Domain</button>
-            <clr-tab-content>
-              wfdefeferfe
             </clr-tab-content>
           </clr-tab>
         </clr-tabs>
 
       </div>
       <div class="card-footer">
-        <div class="btn-group btn-primary">
-          <button class="btn btn-primary" type="submit" [disabled]="!form2.valid">Submit</button>
+        <div class="btn-group btn-primary" *ngIf="form">
+          <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
           <button class="btn btn-success">Reset</button>
           <button class="btn btn-primary">Next</button>
         </div>

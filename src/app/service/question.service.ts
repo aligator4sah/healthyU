@@ -50,6 +50,14 @@ export class QuestionService {
       );
   }
 
+  /**GET question by domain*/
+  getQuestionByDomain(domId: number): Observable<any[]> {
+    return this.http.get<any>(API_URL + '/questionnaire/domain/' + domId)
+      .pipe(
+        catchError(this.handleError('getQuestionByDomain', domId))
+      );
+  }
+
   /**POST a new domain */
   addDomain(domain: Domain): Observable<any> {
     return this.http.post<any>(API_URL + '/domain', domain, httpOptions)
