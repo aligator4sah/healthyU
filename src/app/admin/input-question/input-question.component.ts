@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {DomQuestion, Question} from '../../mock-data/Question';
+import {ANSTYPE, DOMAIN, DomQuestion, Options, Question, Questionnaire, TYPE} from '../../mock-data/Question';
 import "rxjs/add/operator/debounceTime";
+import {QuestionService} from '../../service/question.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-input-question',
@@ -19,6 +21,7 @@ export class InputQuestionComponent implements OnInit {
 
   type = TYPE;
   Domain = DOMAIN;
+  domains = [];
   AnsType = ANSTYPE;
 
   options: Options[] = [];
@@ -28,6 +31,8 @@ export class InputQuestionComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
+    private questionService: QuestionService
   ) { }
 
   ngOnInit() {
@@ -36,8 +41,9 @@ export class InputQuestionComponent implements OnInit {
 
 
   buildForm() {
+    this.getDomains();
     this.form = this.fb.group({
-      quesType: ['', [Validators.required]],
+      quesType: ['questionnaire', [Validators.required]],
       desp: ['', [Validators.required, Validators.minLength(4)]],
       domain: ['', [Validators.required]],
       weight: ['', [Validators.required]],
@@ -47,9 +53,14 @@ export class InputQuestionComponent implements OnInit {
     });
 
     this.ansForm = this.fb.group({});
-    this.form.controls["quesType"].valueChanges.subscribe((value) => {
-      this.getType(value);
-    });
+
+    if (this.form.controls['quesType'].value === 'questionnaire') {
+      this.getType('questionnaire');
+    } else {
+      this.form.controls["quesType"].valueChanges.subscribe((value) => {
+        this.getType(value);
+      });
+    }
     this.form.controls["anstype"].valueChanges.subscribe((value)=> {
       this.getAnsType(value);
     });
@@ -58,9 +69,12 @@ export class InputQuestionComponent implements OnInit {
     })
   }
 
-  onSubmit() {
-
+  getDomains() {
+    this.questionService.getAllDomains().subscribe(value => {
+      this.domains = value;
+    })
   }
+
 
   getType(value: string) {
     if(value === "questionnaire") {
@@ -80,7 +94,7 @@ export class InputQuestionComponent implements OnInit {
     let id = 0;
     this.options = [];
     while (optnum > 0 && id < optnum) {
-      let opt = {key: id, eid: 'Q' + id, extent: id, value: ''};
+      let opt = {key: id, eid: 'A' + id, extent: id, value: ''};
       this.options.push(opt);
       id++;
     }
@@ -96,13 +110,11 @@ export class InputQuestionComponent implements OnInit {
       this.ansForm.controls[opt.eid].valueChanges.subscribe(value => opt.extent = value);
       this.ansForm.controls[opt.key].valueChanges.subscribe(value => opt.value = value);
     }
-    //this.form.addControl("nested",this.ansForm);
   }
 
   confirm() {
     this.inputActive = false;
     this.confirmActive = true;
-    console.log(this.ansForm.value);
   }
 
   back() {
@@ -110,29 +122,20 @@ export class InputQuestionComponent implements OnInit {
     this.confirmActive = false;
   }
 
+  submit() {
+    const newQuestion = new Questionnaire({
+      key: 'Q' + this.form.controls['order'].value,
+      label: this.form.controls['desp'].value,
+      type: this.form.controls['anstype'].value,
+      order: this.form.controls['order'].value,
+      domain: this.form.controls['domain'].value,
+      weight: this.form.controls['weight'].value,
+      ansOptions: this.options,
+    });
+    this.questionService.addQuestion(newQuestion).subscribe(value => {
+      this.router.navigateByUrl('/adminDashboard/ques-manage');
+    });
+  }
+
 }
 
-export const TYPE = [
-  {key: 'demographic', value: 'Demographic'},
-  {key: 'questionnaire', value: 'Questionnaire'},
-];
-
-export const DOMAIN = [
-  {key: '1', value: 'Physical'},
-  {key: '2', value: 'Behavioral'},
-  {key: '3', value: 'Spiritual'},
-];
-
-export const ANSTYPE = [
-  {key: 'textbox', value: 'Text Input Question'},
-  {key: 'dropdown', value: 'Drop Down Question'},
-  {key: 'radiobutton', value: 'Radio Button Question'}
-];
-
-
-export class Options {
-  key: number;
-  eid: string;
-  extent: number;
-  value: string;
-}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Domain, DomQuestion, Question} from '../mock-data/Question';
+import {Domain, DomQuestion, Question, Questionnaire} from '../mock-data/Question';
 import {HandleError, HttpErrorHandler} from './http-error-handler.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
@@ -26,11 +26,27 @@ export class QuestionService {
       )
   }
 
+  /** GET all questions */
+  getAllQuestions(): Observable<any[]> {
+    return this.http.get<any>(API_URL + '/questionnaire')
+      .pipe(
+        catchError(this.handleError('getAllQuestions', []))
+      )
+  }
+
   /**GET domain information by id */
   getDomainById(id: number): Observable<any> {
     return this.http.get<any>(API_URL + '/domian/' + id)
       .pipe(
         catchError(this.handleError('getDomainById', id))
+      );
+  }
+
+  /**GET questions by id */
+  getQuestionById(id: number): Observable<any> {
+    return this.http.get<any>(API_URL + '/questionnaire/' + id)
+      .pipe(
+        catchError(this.handleError('getQuestionById', id))
       );
   }
 
@@ -42,11 +58,27 @@ export class QuestionService {
       );
   }
 
+  /** POST a new question */
+  addQuestion(question: Questionnaire): Observable<any> {
+    return this.http.post<any>(API_URL + '/questionnaire', question, httpOptions)
+      .pipe(
+        catchError(this.handleError('addQuestion', question))
+      );
+  }
+
   /**DELETE one domain*/
   deleteDomain(id: number): Observable<any> {
     return this.http.delete<any>(API_URL + '/domain/' + id, httpOptions)
       .pipe(
         catchError(this.handleError('deleteDomain', id))
+      );
+  }
+
+  /** DELETE one question*/
+  deleteQuestion(id: number): Observable<any> {
+    return this.http.delete(API_URL + '/questionnaire', httpOptions)
+      .pipe(
+        catchError(this.handleError('deleteQuestion', id))
       );
   }
 

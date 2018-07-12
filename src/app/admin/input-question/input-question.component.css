@@ -57,6 +57,7 @@
 
 .question-info {
   margin-left: 15px;
+  width: 90%;
 }
 
 
@@ -66,4 +67,10 @@
 
 p {
   margin-top: 5px;
+}
+
+.confirmation {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #002538;
 }

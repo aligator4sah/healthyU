@@ -24,10 +24,10 @@
 
                         <div class="form-group">
                           <label> Question Category </label>
-                          <div class="radio-inline">
-                            <input type="radio" name="quesType" id="t1" value="demographic" formControlName="quesType">
-                            <label for="t1">Demographic</label>
-                          </div>
+                          <!--<div class="radio-inline">-->
+                            <!--<input type="radio" name="quesType" id="t1" value="demographic" formControlName="quesType">-->
+                            <!--<label for="t1">Demographic</label>-->
+                          <!--</div>-->
                           <div class="radio-inline">
                             <input type="radio" name="quesType" id="t2" value="questionnaire" formControlName="quesType">
                             <label for="t2">Questionnaire</label>
@@ -47,7 +47,7 @@
                             <div class="select">
                               <select id="domain" name="domain" formControlName="domain">
                                 <option value="Default">Select Question Domain...</option>
-                                <option *ngFor="let dom of Domain" [value]="dom.key">{{dom.value}}</option>
+                                <option *ngFor="let dom of domains" [value]="dom.domain">{{dom.domain}}</option>
                               </select>
                             </div>
                           </div>
@@ -130,58 +130,64 @@
                     <div class="question-info">
                       <!--question category -->
                       <div class="ques-info">
-                        <h6>Question Category: </h6>
-                        <p>{{form.get('quesType').value}}</p>
+                        <h6>Question Category: <span class="confirmation"> Questionnaire</span></h6>
                       </div>
 
                       <!--question description -->
                       <div class="ques-info">
-                        <h6>Question Description: </h6>
-                        <p>{{form.get('desp').value}}</p>
+                        <h6>Question Description:
+                          <span class="confirmation"> {{form.get('desp').value}}</span></h6>
                       </div>
 
                       <!--question order-->
                       <div class="ques-info">
-                        <h6>Question Order: </h6>
-                        <p>{{form.get('order').value}}</p>
+                        <h6>Question Order:
+                          <span class="confirmation"> {{form.get('order').value}}</span></h6>
                       </div>
 
                       <!-- question answer type-->
                       <div class="ques-info">
-                        <h6>Question Answer Type: </h6>
-                        <p>{{form.get('anstype').value}}</p>
+                        <h6>Question Answer Type:
+                          <span class="confirmation"> {{form.get('anstype').value}}</span> </h6>
                       </div>
 
                       <!--question domain and weight if needed -->
                       <div *ngIf="isQues">
                         <!--domain -->
                         <div class="ques-info">
-                          <h6>Question Domain: </h6>
-                          <p>{{form.get('domain').value}}</p>
+                          <h6>Question Domain:
+                            <span class="confirmation"> {{form.get('domain').value}}</span> </h6>
                         </div>
 
                         <!--weight -->
                         <div class="ques-info">
-                          <h6>Question Weight: </h6>
-                          <p>{{form.get('weight').value}}</p>
+                          <h6>Question Weight:
+                            <span class="confirmation"> {{form.get('weight').value}}</span> </h6>
                         </div>
                       </div>
 
                       <!-- answer options if needed -->
                       <div *ngFor="let opt of options">
                         <div class="ques-info row">
-                          <h6>Answer Options: {{opt.key + 1}}</h6>
-                          <p>{{ opt.extent }}</p>
-                          <p>{{ opt.value }}</p>
+                          <h6>Answer Options: {{opt.key + 1}}
+                            <span class="confirmation">Description: {{ opt.value }}</span>
+                            <span class="confirmation">Weight: {{ opt.extent }}</span>
+                          </h6>
                         </div>
                       </div>
 
                     </div>
                     <!--end of question information -->
-                    <div class="card-footer">
-                      <button class="btn btn-primary">Submit</button>
+
+                    <div class="card-footer" *ngIf="form.valid && ansForm.valid; else block">
+                      <button class="btn btn-primary" (click)="submit()">Submit</button>
                       <button class="btn btn-success" (click)="back()">Back</button>
                     </div>
+                    <ng-template #block>
+                      <button class="btn btn-primary" disabled>Submit</button>
+                      <button class="btn btn-success" (click)="back()">Back</button>
+                    </ng-template>
+
                     <!-- end of the input question-->
                   </clr-tab-content>
                 </ng-template>

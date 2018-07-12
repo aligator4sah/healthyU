@@ -1,4 +1,4 @@
-/** question related model defination*/
+/** question related model definition*/
 
 export class Domain {
   did: number;
@@ -12,6 +12,42 @@ export class Domain {
   } = {}) {
     this.did = options.did;
     this.domain = options.domain;
+    this.weight = options.weight || 1;
+  }
+}
+
+export class Questionnaire {
+  qid: number;
+  key: string;
+  label: string;
+  hint: string;
+  type: string;
+  ansOptions: any;
+  order: number;
+  required: boolean;
+  domain: string;
+  weight: number;
+  constructor(options: {
+    qid?: number;
+    key?: string;
+    label?: string;
+    hint?: string;
+    type?: string;
+    ansOptions?: any;
+    order?: number;
+    required?: boolean;
+    domain?: string;
+    weight?: number;
+  } = {}){
+    this.qid = options.qid;
+    this.key = options.key;
+    this.label = options.label;
+    this.hint = options.hint || '';
+    this.type = options.type;
+    this.ansOptions = options.ansOptions || {};
+    this.order = options.order || options.qid;
+    this.required = options.required || false;
+    this.domain = options.domain || '';
     this.weight = options.weight || 1;
   }
 }
@@ -57,4 +93,30 @@ export class DomQuestion extends Question {
     this.domain = options['domain'] || '';
     this.weight = options['weight'] || 0;
   }
+}
+
+
+export const TYPE = [
+  // {key: 'demographic', value: 'Demographic'},
+  {key: 'questionnaire', value: 'Questionnaire'},
+];
+
+export const DOMAIN = [
+  {key: '1', value: 'Physical'},
+  {key: '2', value: 'Behavioral'},
+  {key: '3', value: 'Spiritual'},
+];
+
+export const ANSTYPE = [
+  {key: 'textbox', value: 'Text Input Question'},
+  {key: 'dropdown', value: 'Drop Down Question'},
+  {key: 'radiobutton', value: 'Radio Button Question'}
+];
+
+
+export class Options {
+  key: number;
+  eid: string;
+  extent: number;
+  value: string;
 }
