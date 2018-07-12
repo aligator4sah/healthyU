@@ -76,7 +76,7 @@ export class QuestionService {
 
   /** DELETE one question*/
   deleteQuestion(id: number): Observable<any> {
-    return this.http.delete(API_URL + '/questionnaire', httpOptions)
+    return this.http.delete(API_URL + '/questionnaire/' + id, httpOptions)
       .pipe(
         catchError(this.handleError('deleteQuestion', id))
       );

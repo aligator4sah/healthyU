@@ -13,29 +13,30 @@
           <div class="card-text">
             <div class="row">
               <clr-datagrid style="width: 95%; height: 90%; padding-left:15px">
-                <clr-dg-column style="width: 505px">Description
+                <clr-dg-column style="width: 490px" [clrDgField]="'label'">Description
                   <clr-dg-string-filter [clrDgStringFilter]="labelFilter"></clr-dg-string-filter>
                 </clr-dg-column>
-                <clr-dg-column>Order</clr-dg-column>
-                <clr-dg-column>Domain</clr-dg-column>
-                <clr-dg-column>Weight</clr-dg-column>
-                <clr-dg-column>Type</clr-dg-column>
+                <clr-dg-column [clrDgSortBy]="questionComparator" [clrDgField]="'order'">Order</clr-dg-column>
+                <clr-dg-column style="width: 160px" [clrDgField]="'domain'">Domain</clr-dg-column>
+                <clr-dg-column [clrDgSortBy]="weightComparator" [clrDgField]="'weight'">Weight</clr-dg-column>
+                <clr-dg-column [clrDgField]="'type'">Type</clr-dg-column>
 
-                <clr-dg-row *ngFor="let ques of quesGroup">
-                  <clr-dg-cell style="width: 505px">{{ques.label}}</clr-dg-cell>
-                  <clr-dg-cell>{{ques.key}}</clr-dg-cell>
+                <clr-dg-row *ngFor="let ques of questions">
+                  <clr-dg-cell style="width: 490px">{{ques.label}}</clr-dg-cell>
+                  <clr-dg-cell>{{ques.order}}</clr-dg-cell>
 
-                  <clr-dg-cell>{{ques.domain}}</clr-dg-cell>
+                  <clr-dg-cell style="width: 160px">{{ques.domain}}</clr-dg-cell>
                   <clr-dg-cell>{{ques.weight}}</clr-dg-cell>
                   <clr-dg-cell>{{ques.type}}</clr-dg-cell>
 
                   <clr-dg-action-overflow>
-                    <button class="action-item" (click)="onEdit(ques)">Edit</button>
-                    <button class="action-item" (click)="onDelete(ques)">Delete</button>
+                    <button class="action-item" (click)="onEdit(ques.id)">Check</button>
+                    <button class="action-item" (click)="onDelete(ques.id)">Delete</button>
                   </clr-dg-action-overflow>
                 </clr-dg-row>
 
                 <clr-dg-footer>
+                  <!--TODO: check again when more than 10 questions are added -->
                   <clr-dg-pagination #pagination [clrDgPageSize]="10">
                     {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                     of {{pagination.totalItems}} questions

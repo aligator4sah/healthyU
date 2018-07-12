@@ -4,7 +4,6 @@ import { AdminDashboardComponent } from './admin-dashboard.component';
 import {ClarityModule} from '@clr/angular';
 import {HeaderModule} from '../../layout/header/header.module';
 import {RouterModule} from '@angular/router';
-import {UserSummaryModule} from '../user-summary/user-summary.module';
 
 export const routes = [
   { path: '',
@@ -16,6 +15,7 @@ export const routes = [
       {path: 'input-domain', loadChildren: '../input-domain/input-domain.module#InputDomainModule'},
       {path: 'ques-manage', loadChildren: '../ques-manage/ques-manage.module#QuesManageModule'},
       {path: 'user-summary', loadChildren: '../user-summary/user-summary.module#UserSummaryModule'},
+      {path: 'edit-question', loadChildren: '../edit-question/edit-question.module#EditQuestionModule'}
     ]
   }
 ];
