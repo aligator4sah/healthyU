@@ -12,7 +12,7 @@ export class Domain {
   } = {}) {
     this.did = options.did;
     this.domain = options.domain;
-    this.weight = options.weight || -1;
+    this.weight = options.weight || 1;
   }
 }
 

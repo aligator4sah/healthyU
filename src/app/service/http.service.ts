@@ -5,6 +5,10 @@ import {CONST} from './util';
 import {LocalStorageService} from 'angular-2-local-storage';
 
 export let API_URL = environment.apiUrl;
+export const httpOptions = {
+  headers: new HttpHeaders(
+    { 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class HttpService {
@@ -15,7 +19,7 @@ export class HttpService {
   ) { }
 
   get(url,params:{[key:string]:any} = null, options: HttpOptions = {}) {
-    options.params = params
+    options.params = params;
     this._addDefaultHeaderIfNotExists(options, 'Content-Type', 'application/json; charset=utf-8');
     return this.httpClient.get(`${API_URL}/${url}`, options).toPromise();
   }

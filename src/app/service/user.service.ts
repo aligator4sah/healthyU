@@ -23,6 +23,8 @@ export class UserService {
     this.handleError = httpErrorHandler.createHandleError('UserService');
   }
 
+
+  /**POST a new user */
   addUser(user: UserModel): Observable<any> {
     return this.http.post<any>(api_url + '/User', user, httpOptions)
       .pipe(
@@ -30,6 +32,8 @@ export class UserService {
       );
   }
 
+
+  /**PATCH user profile information */
   updateUser(id: number, user: any): Observable<any> {
     return this.http.patch<any>(api_url + '/User/' + id, user, httpOptions)
       .pipe(
@@ -37,6 +41,8 @@ export class UserService {
       );
   }
 
+
+  /**GET all user list */
   getAllUsers(): Observable<any[]> {
     return this.http.get<any[]>(api_url + '/User')
       .pipe(
@@ -44,6 +50,8 @@ export class UserService {
       )
   }
 
+
+  /**GET user information by id */
   getUserById(id: number): Observable<any> {
     return this.http.get<any>(api_url + '/User/' + id)
       .pipe(

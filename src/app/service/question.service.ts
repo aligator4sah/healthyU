@@ -1,10 +1,55 @@
 import { Injectable } from '@angular/core';
-import {DomQuestion, Question} from '../mock-data/Question';
+import {Domain, DomQuestion, Question} from '../mock-data/Question';
+import {HandleError, HttpErrorHandler} from './http-error-handler.service';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {API_URL, httpOptions} from './http.service';
+import {catchError} from 'rxjs/operators';
+
 
 @Injectable()
 export class QuestionService {
+  private handleError: HandleError;
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+    httpErrorHandler: HttpErrorHandler,
+  ) {
+    this.handleError = httpErrorHandler.createHandleError('QuestionService');
+  }
+
+  /**GET all domains */
+  getAllDomains(): Observable<any[]> {
+    return this.http.get<any>(API_URL + '/domain')
+      .pipe(
+        catchError(this.handleError('getAllDomains', []))
+      )
+  }
+
+  /**GET domain information by id */
+  getDomainById(id: number): Observable<any> {
+    return this.http.get<any>(API_URL + '/domian/' + id)
+      .pipe(
+        catchError(this.handleError('getDomainById', id))
+      );
+  }
+
+  /**POST a new domain */
+  addDomain(domain: Domain): Observable<any> {
+    return this.http.post<any>(API_URL + '/domain', domain, httpOptions)
+      .pipe(
+        catchError(this.handleError('addDomain', domain))
+      );
+  }
+
+  /**DELETE one domain*/
+  deleteDomain(id: number): Observable<any> {
+    return this.http.delete<any>(API_URL + '/domain/' + id, httpOptions)
+      .pipe(
+        catchError(this.handleError('deleteDomain', id))
+      );
+  }
+
 
   // TODO: get from a remote source of question metadata
   // TODO: make asynchronous

@@ -11,19 +11,10 @@
         <div class="card-divider"></div>
         <div class="card-block">
           <ul class="list">
-            <li>Physical Domain
-              <span class="weight">Weight: 3</span>
-              <clr-icon shape="trash" class="is-solid is-error delete" size="26"></clr-icon>
-            </li>
-            <li>
-             Behavioral Domain
-              <span class="weight">Weight: 5</span>
-              <clr-icon shape="trash" class="is-solid is-error delete" size="26"></clr-icon>
-            </li>
-            <li>
-              Spiritual Domain
-              <span class="weight">Weight: 4.6</span>
-              <clr-icon shape="trash" class="is-solid is-error delete" size="26"></clr-icon>
+            <li *ngFor="let dom of domains">
+              {{ dom.domain }}
+              <span class="weight"> Weight: {{ dom.weight }}</span>
+              <clr-icon shape="trash" class="is-solid is-error delete" size="22" (click)="deleteDomain(dom.id)"></clr-icon>
             </li>
           </ul>
         </div>
