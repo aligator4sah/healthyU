@@ -58,6 +58,14 @@ export class QuestionService {
       );
   }
 
+  /**POST a new session to start questinnaire*/
+  createSession(sessionInfo: any): Observable<any> {
+    return this.http.post<any>(API_URL + '/session', sessionInfo, httpOptions)
+      .pipe(
+        catchError(this.handleError('createSession', sessionInfo))
+      );
+  }
+
   /**POST a new domain */
   addDomain(domain: Domain): Observable<any> {
     return this.http.post<any>(API_URL + '/domain', domain, httpOptions)

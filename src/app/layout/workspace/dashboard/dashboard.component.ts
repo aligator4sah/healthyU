@@ -56,7 +56,6 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-
   randomize() {
     let _lineChartData:Array<any> = new Array(this.lineChartData.length);
     for (let i = 0; i < this.lineChartData.length; i++) {

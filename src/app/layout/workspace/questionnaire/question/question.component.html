@@ -18,12 +18,11 @@
       </div>
     </div>
 
-    <!--Radio button questions (less then three options)-->
     <div class="form-group" *ngSwitchCase="'radiobutton'">
       <label>Select you answer:</label>
       <div class="radio-inline" *ngFor="let opt of question.ansOptions">
-        <input type="radio" [name]="question.id" [id]="question.id + '.' + opt.eid" [value]="opt.key" [formControlName]="question.id">
-        <label [for]="question.id + '.' + opt.eid">{{opt.value}}</label>
+        <input type="radio" [name]="question.id" id="{{question.id}} + {{opt.eid}}" [value]="opt.key" [formControlName]="question.id">
+        <label for="{{question.id}} + {{opt.eid}}">{{opt.value}}</label>
       </div>
     </div>
 

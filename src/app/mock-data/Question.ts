@@ -119,6 +119,23 @@ export class AnswerItem {
   }
 }
 
+export class Session {
+  id: number;
+  userId: number;
+  createDate: string;
+  updateDate: string;
+  constructor(options: {
+    id?: number;
+    userId?: number;
+    createDate?: string;
+    updateDate?: string;
+  } = {}) {
+    this.id = options.id;
+    this.userId = options.userId;
+    this.createDate = options.createDate || '';
+    this.updateDate = options.updateDate || '';
+  }
+}
 
 export const TYPE = [
   // {key: 'demographic', value: 'Demographic'},

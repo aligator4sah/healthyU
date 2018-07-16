@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validator, Validators} from '@angular/forms';
-import {AnswerItem, Question} from '../../../mock-data/Question';
+import {AnswerItem, Question, Session} from '../../../mock-data/Question';
 import {QuestionControlService} from '../../../service/question-control.service';
 import {QuestionService} from '../../../service/question.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-questionnaire',
@@ -12,6 +13,7 @@ import {QuestionService} from '../../../service/question.service';
 export class QuestionnaireComponent implements OnInit {
 
   userId = JSON.parse(localStorage.getItem('curUser')).id;
+  session: any;
   domains = [];
   questions = [];
   answers = [];
@@ -22,12 +24,24 @@ export class QuestionnaireComponent implements OnInit {
     private questionService: QuestionService,
     private questionaControlService: QuestionControlService,
     private fb: FormBuilder,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
     this.getDomains();
   }
 
+  //TODO: add session information and class
+  createSession() {
+    let date = this.datePipe.transform(Date.now(), "yyyy-MM-dd HH:mm a z':'+0900");
+    const sessionInfo = new Session({
+      userId: this.userId,
+      createDate: date
+    });
+    this.questionService.createSession(sessionInfo).subscribe(value => {
+      this.session = value;
+    });
+  }
 
   getDomains() {
     this.questionService.getAllDomains().subscribe(value => {
@@ -39,7 +53,7 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   getQuestionsByDomain(id: number) {
-    this.questions = [];
+    //this.questions = [];
     this.answers = [];
 
     this.questionService.getQuestionByDomain(id).subscribe(value => {
