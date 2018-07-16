@@ -32,9 +32,9 @@
                       <input type="radio" name="domain" id="Overall" value="Overall" formControlName="domain">
                       <label for="Overall" style="font-size: 15px">Overall</label>
                     </div>
-                    <div class="radio" *ngFor="let item of domains">
-                      <input type="radio" name="domain" [id]="item.key" [value]="item.value" formControlName="domain">
-                      <label [for]="item.key">{{item.value}} </label>
+                    <div class="radio" *ngFor="let item of domains1">
+                      <input type="radio" name="domain" [id]="item.did" [value]="item.domain" formControlName="domain">
+                      <label [for]="item.did">{{item.domain}} </label>
                     </div>
                     </form>
                   </div>

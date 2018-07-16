@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DOMAINS} from '../../../mock-data/userInfo';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {QuestionService} from '../../../service/question.service';
+import {Domain} from '../../../mock-data/Question';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +14,8 @@ export class DashboardComponent implements OnInit {
   domains = DOMAINS;
   domainForm: FormGroup;
   selectedDomain: string = 'Overall';
+
+  domains1 = [];
 
   // lineChart
   public lineChartData:Array<any> = [
@@ -31,10 +35,12 @@ export class DashboardComponent implements OnInit {
   }
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private questionService: QuestionService
   ) { }
 
   ngOnInit() {
+    this.getDomains();
     this.domainForm = this.fb.group({
       domain: ['Overall']
     });
@@ -43,6 +49,13 @@ export class DashboardComponent implements OnInit {
       this.randomize();
     });
   }
+
+  getDomains() {
+    this.questionService.getAllDomains().subscribe(value => {
+      this.domains1 = value;
+    })
+  }
+
 
   randomize() {
     let _lineChartData:Array<any> = new Array(this.lineChartData.length);
