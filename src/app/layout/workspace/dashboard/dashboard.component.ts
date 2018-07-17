@@ -46,6 +46,7 @@ export class DashboardComponent implements OnInit {
     });
     this.domainForm.controls['domain'].valueChanges.subscribe(value => {
       this.selectedDomain = value;
+      console.log(this.selectedDomain);
       this.randomize();
     });
   }

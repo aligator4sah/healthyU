@@ -27,15 +27,20 @@
               <div class="col-md-4">
                   <div class="form-group">
                     <form [formGroup]="domainForm">
-                      <label style="font-size: 18px; color: darkblue; padding-bottom: 25px; margin-top: 20px">Select Domains to check changes</label>
-                    <div class="radio">
-                      <input type="radio" name="domain" id="Overall" value="Overall" formControlName="domain">
-                      <label for="Overall" style="font-size: 15px">Overall</label>
-                    </div>
-                    <div class="radio" *ngFor="let item of domains1">
-                      <input type="radio" name="domain" [id]="item.did" [value]="item.domain" formControlName="domain">
-                      <label [for]="item.did">{{item.domain}} </label>
-                    </div>
+                      <section class="form-block">
+                        <label style="font-size: 18px; color: darkblue; padding-bottom: 25px; margin-top: 20px">Select Domains to check changes</label>
+                        <div class="form-group" style="padding-left: 20px">
+                          <label style="width: 3px"></label>
+                          <div class="radio">
+                            <input type="radio" name="domain" id="Overall" formControlName="domain" value="Overall">
+                            <label for="Overall" style="font-size: 15px">Overall</label>
+                          </div>
+                          <div class="radio" *ngFor="let item of domains1">
+                            <input type="radio" name="domain" id="{{item.id}}" formControlName="domain" value="{{item.id}}">
+                            <label for="{{item.id}}">{{item.domain}} </label>
+                          </div>
+                        </div>
+                      </section>
                     </form>
                   </div>
               </div>

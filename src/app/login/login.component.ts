@@ -115,7 +115,7 @@ export class LoginComponent implements OnInit {
       if (this.role !== undefined) {
         localStorage.setItem("curRole", this.role);
       }
-      this.router.navigateByUrl("/dashboard");
+      // this.router.navigateByUrl("/dashboard");
     });
     this.registered = true;
   }
