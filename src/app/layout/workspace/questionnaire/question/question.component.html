@@ -1,6 +1,6 @@
 <div [formGroup]="form">
+  <section class="form-block" style="margin-bottom:10px">
   <label class="ques-label">{{question.id + '. ' + question.label}}</label>
-
   <div [ngSwitch]="question.type">
     <!--text question -->
     <div class="form-group" *ngSwitchCase="'textbox'">
@@ -18,15 +18,16 @@
       </div>
     </div>
 
+    <!-- radio button question-->
     <div class="form-group" *ngSwitchCase="'radiobutton'">
       <label>Select you answer:</label>
       <div class="radio-inline" *ngFor="let opt of question.ansOptions">
-        <input type="radio" [name]="question.id" id="{{question.id}} + {{opt.eid}}" [value]="opt.key" [formControlName]="question.id">
+        <input type="radio" [name]="question.id" id="{{question.id}} + {{opt.eid}}" value="{{opt.eid}}" [formControlName]="question.id">
         <label for="{{question.id}} + {{opt.eid}}">{{opt.value}}</label>
       </div>
     </div>
 
   </div>
-
+  </section>
   <!--<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>-->
 </div>

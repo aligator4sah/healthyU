@@ -29,9 +29,9 @@ export class QuestionnaireComponent implements OnInit {
 
   ngOnInit() {
     this.getDomains();
+    // this.createSession();
   }
 
-  //TODO: add session information and class
   createSession() {
     let date = this.datePipe.transform(Date.now(), "yyyy-MM-dd HH:mm a z':'+0900");
     const sessionInfo = new Session({
@@ -40,6 +40,7 @@ export class QuestionnaireComponent implements OnInit {
     });
     this.questionService.createSession(sessionInfo).subscribe(value => {
       this.session = value;
+      console.log(this.session);
     });
   }
 
@@ -55,7 +56,6 @@ export class QuestionnaireComponent implements OnInit {
   getQuestionsByDomain(id: number) {
     //this.questions = [];
     this.answers = [];
-
     this.questionService.getQuestionByDomain(id).subscribe(value => {
       this.questions = value;
       let group: any = {};
@@ -71,10 +71,11 @@ export class QuestionnaireComponent implements OnInit {
       this.form = this.fb.group(group);
       this.answers.forEach(ans => {
         this.form.controls[ans.questionId].valueChanges.subscribe(value => {
-          ans.answer = value
+          ans.answer = value;
+          console.log(ans.answer);
         });
       });
-      console.log(this.answers);
+      // console.log(this.answers);
     });
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {QuestionService} from '../../../service/question.service';
 
 @Component({
   selector: 'app-complete-card',
@@ -8,10 +9,22 @@ import { Component, OnInit } from '@angular/core';
 export class CompleteCardComponent implements OnInit {
 
   curUser = JSON.parse(localStorage.getItem('curUser'));
+  sessions: any;
+  sessionNum: number;
 
-  constructor() { }
+  constructor(
+    private questionService: QuestionService
+  ) { }
 
   ngOnInit() {
+    this.getSessions();
+  }
+
+  getSessions() {
+    this.questionService.getSessionByUser(this.curUser.id).subscribe(value => {
+      this.sessions = value;
+      this.sessionNum = value.length;
+    })
   }
 
 }

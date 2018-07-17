@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SESSIONDATA} from '../../../mock-data/userInfo';
 import {StateService} from '../../../service/state.service';
 import {Router} from '@angular/router';
+import {QuestionService} from '../../../service/question.service';
 
 @Component({
   selector: 'app-session-list',
@@ -10,18 +11,29 @@ import {Router} from '@angular/router';
 })
 export class SessionListComponent implements OnInit {
 
-  sessions = SESSIONDATA;
+  userId = JSON.parse(localStorage.getItem('curUser')).id;
+  sessions: any;
+
+  //sessions = SESSIONDATA;
 
   constructor(
     private stateService: StateService,
+    private questionService: QuestionService,
     private router: Router,
   ) { }
 
   ngOnInit() {
+    this.getSession();
     setTimeout(() => {
       this.stateService.curSession$.next(-1);
     })
+  }
 
+  getSession() {
+    this.questionService.getSessionByUser(this.userId).subscribe(value => {
+      this.sessions = value;
+      //console.log(value);
+    })
   }
 
   goAnsList(id: number) {

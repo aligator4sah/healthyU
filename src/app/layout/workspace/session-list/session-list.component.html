@@ -14,8 +14,8 @@
             <clr-stack-block *ngFor="let item of sessions">
               <clr-stack-label>Session {{item.id}}</clr-stack-label>
               <clr-stack-content>
-                <span> Date: {{item.date}}</span>
-                <span style="padding-right: 63%"></span>
+                <span> Date: {{item.createDate | date :'short'}}</span>
+                <span style="padding-right: 53%"></span>
                 <span style="padding-right: 10px">
                   <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-xs" (click)="goAnsList(item.id)">
                       <clr-icon shape="view-list" size="24"></clr-icon>

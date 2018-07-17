@@ -58,6 +58,14 @@ export class QuestionService {
       );
   }
 
+  /** GET sessions by user id*/
+  getSessionByUser(id: number): Observable<any[]> {
+    return this.http.get<any>(API_URL + '/session/getSessionByUser/' + id)
+      .pipe(
+        catchError(this.handleError('getSessionByUserId', id))
+      );
+   }
+
   /**POST a new session to start questinnaire*/
   createSession(sessionInfo: any): Observable<any> {
     return this.http.post<any>(API_URL + '/session', sessionInfo, httpOptions)
