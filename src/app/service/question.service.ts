@@ -66,6 +66,14 @@ export class QuestionService {
       );
    }
 
+   /**GET question answers by session */
+   getAnswersBySession(sessionId: number): Observable<any[]>{
+     return this.http.get<any>(API_URL + '/session/questionnaireAnswer/' + sessionId)
+       .pipe(
+         catchError(this.handleError('getAnswersBySession', sessionId))
+       );
+   }
+
    /** POST question answers to for one session*/
    addQuestionAnswer(session: any, sessionId: number): Observable<any>{
      return this.http.patch<any>(API_URL + '/session/addSession/' + sessionId, session, httpOptions)
