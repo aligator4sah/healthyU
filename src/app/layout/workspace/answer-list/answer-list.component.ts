@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {StateService} from '../../../service/state.service';
 import {QuestionService} from '../../../service/question.service';
+import {ClrDatagridComparatorInterface, ClrDatagridStringFilterInterface} from '@clr/angular';
+import {Questionnaire} from '../../../mock-data/Question';
 
 @Component({
   selector: 'app-answer-list',
@@ -11,6 +13,9 @@ export class AnswerListComponent implements OnInit {
 
   sessionId: number;
   answers: any;
+  labelFilter = new LabelFilter();
+  questionComparator = new QuestionComparator();
+  weightComparator = new WeightComparator();
 
   constructor(
     private stateService: StateService,
@@ -27,4 +32,23 @@ export class AnswerListComponent implements OnInit {
     })
   }
 
+}
+
+
+class LabelFilter implements ClrDatagridStringFilterInterface<Questionnaire> {
+  accepts(item: Questionnaire, search: string): boolean {
+    return item.label.toLowerCase().indexOf(search) >= 0;
+  };
+}
+
+class QuestionComparator implements ClrDatagridComparatorInterface<Questionnaire> {
+  compare(a: Questionnaire, b: Questionnaire) {
+    return a.order - b.order;
+  }
+}
+
+class WeightComparator implements ClrDatagridComparatorInterface<Questionnaire> {
+  compare(a: Questionnaire, b: Questionnaire) {
+    return a.weight - b.weight;
+  }
 }

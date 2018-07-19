@@ -68,7 +68,7 @@ export class QuestionService {
 
    /**GET question answers by session */
    getAnswersBySession(sessionId: number): Observable<any[]>{
-     return this.http.get<any>(API_URL + '/session/questionnaireAnswer/' + sessionId)
+     return this.http.get<any>(API_URL + '/session/questionAndAnswer/' + sessionId)
        .pipe(
          catchError(this.handleError('getAnswersBySession', sessionId))
        );
