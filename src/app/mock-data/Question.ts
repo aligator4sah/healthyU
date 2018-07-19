@@ -124,11 +124,13 @@ export class Session {
   userId: number;
   createDate: string;
   updateDate: string;
+  questionnaireAnswer: any;
   constructor(options: {
     id?: number;
     userId?: number;
     createDate?: string;
     updateDate?: string;
+    questionnaireAnswer?: any;
   } = {}) {
     this.id = options.id;
     this.userId = options.userId;

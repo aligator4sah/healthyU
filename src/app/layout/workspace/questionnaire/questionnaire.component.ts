@@ -18,18 +18,18 @@ export class QuestionnaireComponent implements OnInit {
   questions = [];
   answers = [];
   form: FormGroup;
+  isSubmitted: boolean = false;
   payLoad = '';
 
   constructor(
     private questionService: QuestionService,
-    private questionaControlService: QuestionControlService,
     private fb: FormBuilder,
     private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
     this.getDomains();
-    // this.createSession();
+    this.createSession();
   }
 
   createSession() {
@@ -40,7 +40,7 @@ export class QuestionnaireComponent implements OnInit {
     });
     this.questionService.createSession(sessionInfo).subscribe(value => {
       this.session = value;
-      console.log(this.session);
+      //console.log(this.session);
     });
   }
 
@@ -56,6 +56,7 @@ export class QuestionnaireComponent implements OnInit {
   getQuestionsByDomain(id: number) {
     //this.questions = [];
     this.answers = [];
+    this.isSubmitted = false;
     this.questionService.getQuestionByDomain(id).subscribe(value => {
       this.questions = value;
       let group: any = {};
@@ -68,15 +69,32 @@ export class QuestionnaireComponent implements OnInit {
         });
         this.answers.push(answer);
       });
+      // generate form group to collect the users' answers
       this.form = this.fb.group(group);
       this.answers.forEach(ans => {
         this.form.controls[ans.questionId].valueChanges.subscribe(value => {
-          ans.answer = value;
-          console.log(ans.answer);
+          this.questions.forEach(item => {
+            if (item.id == ans.questionId) {
+              item.ansOptions.forEach(ansitem => {
+                if (ansitem.eid == value) {
+                  ans.answer = ansitem;
+                }
+              })
+            }
+          })
         });
       });
-      // console.log(this.answers);
     });
+  }
+
+  submitAns() {
+    this.session.questionnaireAnswer = this.answers;
+    const finalAnswer = {
+      questionnaireAnswer: this.answers,
+    };
+    this.questionService.addQuestionAnswer(finalAnswer, this.session.id).subscribe(value => {
+      console.log(value);
+    })
   }
 
   onSubmit() {

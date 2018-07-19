@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Domain, DomQuestion, Question, Questionnaire} from '../mock-data/Question';
+import {AnswerItem, Domain, DomQuestion, Question, Questionnaire, Session} from '../mock-data/Question';
 import {HandleError, HttpErrorHandler} from './http-error-handler.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
@@ -64,6 +64,14 @@ export class QuestionService {
       .pipe(
         catchError(this.handleError('getSessionByUserId', id))
       );
+   }
+
+   /** POST question answers to for one session*/
+   addQuestionAnswer(session: any, sessionId: number): Observable<any>{
+     return this.http.patch<any>(API_URL + '/session/addSession/' + sessionId, session, httpOptions)
+       .pipe(
+         catchError(this.handleError('addQuestionAnswer', session))
+       );
    }
 
   /**POST a new session to start questinnaire*/
