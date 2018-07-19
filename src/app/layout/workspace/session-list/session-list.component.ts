@@ -37,7 +37,8 @@ export class SessionListComponent implements OnInit {
   }
 
   goAnsList(id: number) {
-
+    this.stateService.curSession$.next(id);
+    this.router.navigateByUrl('/dashboard/answer-list');
   }
 
   goGraph(id: number) {
