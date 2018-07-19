@@ -46,5 +46,11 @@ export class SessionListComponent implements OnInit {
     this.router.navigateByUrl('/dashboard/score-graph');
   }
 
+  deleteItem(id: number) {
+    this.questionService.deleteSession(id).subscribe(value => {
+      console.log(value);
+      this.sessions = this.sessions.filter(item => item.id != id);
+    })
+  }
 
 }

@@ -122,6 +122,14 @@ export class QuestionService {
       );
   }
 
+  /** DELETE one session by id*/
+  deleteSession(id: number): Observable<any> {
+    return this.http.delete(API_URL + '/session/' + id, httpOptions)
+      .pipe(
+        catchError(this.handleError('deleteSession', id))
+      );
+  }
+
 
   // TODO: get from a remote source of question metadata
   // TODO: make asynchronous

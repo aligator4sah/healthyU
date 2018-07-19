@@ -22,9 +22,15 @@
                       <span class="tooltip-content">List</span>
                   </a>
                 </span>
-                <span>
+                <span style="padding-right: 10px">
                   <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-xs" (click)="goGraph(item.id)">
                       <clr-icon shape="bar-chart" size="24"></clr-icon>
+                      <span class="tooltip-content">Graph</span>
+                  </a>
+                </span>
+                <span>
+                  <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-xs" (click)="deleteItem(item.id)">
+                      <clr-icon shape="trash" size="24"></clr-icon>
                       <span class="tooltip-content">Graph</span>
                   </a>
                 </span>
